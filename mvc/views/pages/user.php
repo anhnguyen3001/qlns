@@ -40,13 +40,13 @@
                         $list = $data['users'];
                         foreach ($list as $columns) {
                     ?>
-                        <tr class='small' id='<?php echo $columns['username']?>'>
+                        <tr class='small' id='<?php echo $columns['loginName']?>'>
                             <td style="width: 200px">
-                                <?php if($columns['role'] == 'personnel' || $columns['role'] == 'accountant') {?>
-                                    <a class='link' href='<?php echo ROOT_LINK?>Employee/detail?employeeID=<?php echo $columns['user']?>'>
+                                <?php if($columns['role'] != 'admin') {?>
+                                    <a class='link' href='<?php echo ROOT_LINK?>Employee/detail?employeeID=<?php echo $columns['employeeID']?>'>
                                 <?php }?>
-                                <?php echo ($columns['username'] == NULL) ? $columns['loginName'] : $columns['username'];?>
-                                <?php if($columns['role'] == 'personnel' || $columns['role'] == 'accountant') {?>
+                                <?php echo $columns['username'];?>
+                                <?php if($columns['role'] != 'admin') {?>
                                     </a>
                                 <?php }?>
                             </td>
@@ -54,19 +54,19 @@
                             <td style="width: 150px"><?php echo $columns['password']?></td>
                             <td style="width: 200px"><?php echo constant(strtoupper($columns['role']))?></td>
                             <td class='action center' style="width: 150px">
-                                <div class="fa fa-ellipsis-v dropdown-btn link" data-toggle='dropdown-<?php echo $columns['user']?>'></div>
-                                <div class='sub-menu' id='dropdown-<?php echo $columns['user']?>'>
+                                <div class="fa fa-ellipsis-v dropdown-btn link" data-toggle='dropdown-<?php echo $columns['loginName']?>'></div>
+                                <div class='sub-menu' id='dropdown-<?php echo $columns['loginName']?>'>
                                     <ul>
                                         <div class="dropdown-list">
                                             <li>
-                                                <a class="row edit modal-btn edit-user" id='<?php echo $columns['user']?>' data-open='edit-password-modal'>
+                                                <a class="row edit modal-btn edit-user" id='<?php echo $columns['loginName']?>' data-open='edit-password-modal'>
                                                     <span>Chỉnh sửa</span>
                                                     <div class="fa fa-user-cog"></div>
                                                 </a>
                                             </li>
                                             <?php if ($columns['role'] != 'admin'){?>
                                             <li>
-                                                <a class='row' href='<?php echo ROOT_LINK?>User/delete?username=<?php echo $columns['user']?>' data-open='delete-modal'>
+                                                <a class='row' href='<?php echo ROOT_LINK?>User/delete?employeeID=<?php echo $columns['employeeID']?>' data-open='delete-modal'>
                                                     <span>Xóa</span>
                                                     <div class="fa fa-trash"></div>
                                                 </a>

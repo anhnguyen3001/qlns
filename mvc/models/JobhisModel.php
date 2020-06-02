@@ -19,7 +19,7 @@
 
         public function getJobHisByEmpID($id){
             $query = "
-                SELECT j.`employeeID`, j.`positionID`, positionTitle, j.`departmentID`, departmentTitle, `startDate`
+                SELECT j.* , positionTitle, departmentTitle
                 FROM jobhis j
                 JOIN department d ON d.departmentID = j.departmentID
                 JOIN position p ON p.positionID = j.positionID

@@ -7,7 +7,7 @@
             <ul class='column group-form'>
                 <li class='row group-form'>
                     <div class="title label-form col-1-3">Phòng ban: </div>
-                    <div class="text col-2-3"><?php echo $_SESSION['user'];?></div>
+                    <div class="text col-2-3"><?php echo $_SESSION['departmentTitle'];?></div>
                 </li>
                 <li class='row group-form'>
                     <div class="title label-form col-1-3">Trưởng phòng: </div>

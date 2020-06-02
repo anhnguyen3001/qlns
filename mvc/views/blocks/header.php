@@ -1,11 +1,7 @@
 <div class="container">
     <div class="userInfo">
         <div class='username dropdown-btn link' data-toggle='welcome'>
-            <?php 
-                $user = $_SESSION['user']; 
-                if (isset($_SESSION['role']) && $_SESSION['role'] == 'manager') $user = 'Phòng '. $user;
-                echo $user;
-            ?>
+            <?php echo $_SESSION['user'];?>
         </div>
         <ul class='sub-menu small' id='welcome'>
             <div class="dropdown-list">

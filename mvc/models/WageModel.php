@@ -41,5 +41,20 @@
         
             return $this->select($query, $temp, $type);
         }
+
+        public function insert($data){
+            $columns = '(' .join(', ', array_keys($data)) .')';
+            $values = '(' .str_repeat('?, ', sizeof($data) - 1) .'?)';
+            $type = '';
+
+            foreach ($data as $key => $value) {
+                if ($key == 'wage') $type .= 'i';
+                else $type .= 's';
+            }
+
+            $query = "INSERT INTO wage $columns VALUES $values";
+            
+            return $this->update($query, $data, $type);
+        }
     }
 ?>

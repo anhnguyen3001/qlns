@@ -16,7 +16,6 @@
         $positionDate = $data['employee']['date'];
         
         $wage = $data['employee']['wage'];
-        $level = $data['employee']['level'];
         $currentDateWage = date('d-m-Y', strtotime($data['employee']['validDate']));
 
         
@@ -180,8 +179,7 @@
                 <div class="row">
                     <div class="group-form col-2">
                         <label for='wage' class='label-form'>Mức lương <span class='required-symbol'>*</span></label>
-                        <select name='wage' id='wage' class="form-input disabled add" required>
-                        </select>
+                        <input type='text' pattern='[0-9]+' name='wage' id='wage' class="form-input disabled add" required>
                     </div>
                     <div class="group-form col-2">
                         <label for='newDate-salary' class='label-form'>Ngày áp dụng <span class='required-symbol'>*</span></label>

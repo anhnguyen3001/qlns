@@ -38,14 +38,15 @@
         public function saveSession($data){
             if ($data['loginName'] != 'admin'){
                 $_SESSION['role'] = $data['role'];
-                $_SESSION['username'] = $data['username'];
+                $_SESSION['username'] = $data['employeeID'];
                 
-                // Get department name to display
+                $temp = $this->employeeModel->getDepartmentOfEmp($data['employeeID']);
+
+                $_SESSION['user'] = $temp['fullName'];
+
                 if ($_SESSION['role'] == "manager"){
-                    $temp = ['departmentID' => $data['username']];
-                    $_SESSION['user'] = $this->departmentModel->getDepartment($temp)[0]['departmentTitle'];
-                } else {
-                    $_SESSION['user'] = $this->employeeModel->getEmployeeName($data['username'])['fullName'];
+                    $_SESSION['departmentID'] = $temp['departmentID'];
+                    $_SESSION['departmentTitle'] = $temp['departmentTitle'];
                 }
             } else $_SESSION['user'] = $data['loginName'];
         }   

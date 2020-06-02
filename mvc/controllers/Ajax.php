@@ -1,7 +1,6 @@
 <?php
     class Ajax extends Controller{
         private $employeeModel;
-        private $positionModel;
         private $departmentModel;
         private $wageModel;
         private $userModel;
@@ -9,7 +8,6 @@
         public function __construct()
         {
             $this->employeeModel = $this->model("EmployeeModel");
-            $this->positionModel = $this->model("PositionModel");
             $this->departmentModel = $this->model("DepartmentModel");
             $this->wageModel = $this->model("WageModel");
             $this->userModel = $this->model("UserModel");
@@ -36,17 +34,11 @@
             }
         }
 
-        public function getPosition(){
-            if (isset($_POST['id'])){
-                $data = json_encode($this->positionModel->getPosition($_POST['id']), true);
+        public function getManager(){
+            if (isset($_POST['getManager'])){
+                $data = json_encode($this->departmentModel->getAllDepartmentInfo(), true);
                 echo $data;
             }
-        }
-
-        public function getUser(){
-                $data = json_encode($this->userModel->getUser($_POST), true);
-                echo $data;
-            
         }
     }
 ?>

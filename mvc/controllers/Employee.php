@@ -195,7 +195,7 @@
                             unset($_POST['positionID']);
                             unset($_POST['departmentID']);
                             unset($_POST['startDate']);
-    
+                            
                             if ($this->employeeModel->insert($_POST) 
                             && $this->jobhisModel->insert($job) && $this->wageModel->insert($wage)){
                                 $messageType = 'success';
@@ -203,7 +203,7 @@
                             }
                         }
         
-                        // Auto generate account if this employee is manager
+                        // Create account
                         if ($messageType === 'success'){
                             if (isset($role)){
                                 $accountInfo = [
@@ -212,7 +212,7 @@
                                     'role' => $role    
                                 ];
                                 
-                                if ($this->userModel->createEmpAccount($accountInfo)) 
+                                if ($this->userModel->insert($accountInfo)) 
                                     $mess = 'Thêm hồ sơ thành công';
                                 else {
                                     $messageType = 'fail';

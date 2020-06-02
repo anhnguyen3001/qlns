@@ -1,12 +1,10 @@
 <?php 
     class Department extends Controller {
-        private $userModel;
         private $departmentModel;
         private $validation;
 
         public function __construct()
         {
-            $this->userModel = $this->model("UserModel");
             $this->departmentModel = $this->model("DepartmentModel");
             $this->validation = new Validation;
         }
@@ -34,15 +32,7 @@
                     if (!$this->departmentModel->getDepartment($_POST)){
                         if ($this->departmentModel->create($_POST)){
                             $messageType = 'success';
-                            $mess = "Thêm phòng ban thành công";
-
-                            // Create account for department
-                            $temp = $this->departmentModel->getDepartment($_POST)[0];
-                            
-                            if (!$this->userModel->createDepAccount($temp)){
-                                $mess .= ' nhưng không tạo được tài khoản';
-                                $messageType = 'fail';
-                            }                        
+                            $mess = "Thêm phòng ban thành công";                     
                         }
                     }
                     else $mess = 'Phòng ban đã tồn tại';             

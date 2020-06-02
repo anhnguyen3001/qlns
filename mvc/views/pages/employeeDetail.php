@@ -26,6 +26,9 @@
                         <h5 class="line text"><?php echo $info['departmentTitle']?></h6>
                         <div class="line employee-id small">MSNV: <?php echo $info['employeeID']?></div>
                         <div class="line text small ">Ngày bắt đầu: <?php echo date('d-m-Y', strtotime($info['startDate']))?></div>
+                        <?php if ($info['resignDate'] == 'N/A') {?>
+                        <div class="line text small ">Mức lương: <?php echo $info['wage']?></div>
+                        <?php }?>
                         <div class="line text small ">Ngày nghỉ việc: <?php echo ($info['resignDate'] != 'N/A') ? date('d-m-Y', strtotime($info['resignDate'])) : $info['resignDate']?></div>
                     </div>
                     <ul class="personal-info column col-2 right">

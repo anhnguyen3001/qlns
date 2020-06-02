@@ -1,15 +1,15 @@
 <div class="modal" tabindex='1' id='add-modal'>
     <div class="layer" data-open='add-modal' data-refresh='#add-user'></div>
-    <div class="modal-dialog">
+    <div class="modal-dialog small-form">
         <!-- Modal header -->
         <div class="modal-header center">Thêm tài khoản</div>
-        <div class="column modal-body small-form">
+        <div class="column modal-body">
             <form action='<?php echo ROOT_LINK?>User/add' id="add-user" method='POST'>
                 <div class="row header-section">Tài khoản cho: </div>
                 <div class="row center" id='typeAccount'>
-                    <div class="col-3">
+                    <div class="col-3" style='text-align:left'>
                         <input type='radio' id='manager' name='role' value="manager" data-toggle='depChoose' data-account='departmentID' required>
-                        <label for='manager'>Phòng ban</label>
+                        <label for='manager'>Trưởng phòng</label>
                     </div>
                     <div class="col-3">
                         <input type='radio' id='accountant' name='role' value="accountant" data-toggle='employeeChoose' data-account='employeeID'>
@@ -18,6 +18,12 @@
                     <div class="col-3">
                         <input type='radio' id='hr' name='role' value="personnel" data-toggle='employeeChoose' data-account='employeeID'>
                         <label for='hr'>Nhân viên nhân sự</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="group-form col-1">
+                        <label for='employeeID' class='label-form'>Mã số nhân viên <span class='required-symbol'>*</span></label>
+                        <input type='text' name='employeeID' id='employeeID' class="form-input disabled" required>
                     </div>
                 </div>
                 <div class="row">

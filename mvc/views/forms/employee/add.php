@@ -86,6 +86,10 @@
                     <legend class='subheader'>Tạo tài khoản: </legend>
                     <div class="row center">
                         <div class="col-3">
+                            <input type='radio' id='manager' name='role' value="manager">
+                            <label for='manager'>Trưởng phòng</label>
+                        </div>
+                        <div class="col-3">
                             <input type='radio' id='accounting' name='role' value="accountant">
                             <label for='accounting'>Nhân viên kế toán</label>
                         </div>

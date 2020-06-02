@@ -11,6 +11,7 @@
 
         public function show(){
             if (isset($_SESSION['user'])){
+                
                 $this->view('layout1',array_merge($this->transferMessage() ,[
                     "page" => 'user',
                     "title" => "Quản lí tài khoản",
@@ -46,14 +47,7 @@
                     $_SESSION['mess'] = 'Tạo tài khoản không thành công';
                     $_SESSION['messType'] = 'fail';
 
-                    $submit = false;
-                    if ($_POST['role'] == 'manager'){
-                        if($this->userModel->createDepAccount($_POST))
-                            $submit = true;
-                    } else if ($this->userModel->createEmpAccount($_POST))
-                            $submit = true;
-                    
-                    if ($submit) {
+                    if($this->userModel->insert($_POST)){
                         $_SESSION['mess'] = 'Tạo tài khoản thành công';
                         $_SESSION['messType'] = 'success';
                     }
