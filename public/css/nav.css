@@ -1,0 +1,85 @@
+nav{
+    height: 100%;
+    position: relative;
+}
+
+#toggle-btn{
+    display: none;
+    position: fixed;
+    top: 70px;
+    right: 2%;
+    z-index: 2;
+    font-size: 1.3em;
+    text-align: center;
+    padding: 9px 10px;
+    border-radius: 20px;
+    box-shadow: 0px 2px 10px;
+    opacity: 0.6;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+#toggle-btn:hover{
+    opacity: 0.8;
+    background-color:#fff;
+}
+
+#sidemenu{
+    width: 70px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 60px;
+    z-index: 1;
+    transition: 0.4s ease-in;
+    background-color: #2c3a41;
+}
+
+#sidemenu > .fa:hover{
+    background-color: white;
+    box-shadow: 0px -2px 8px rgba(255, 255, 255, 0.8);
+}
+
+#sidemenu ul{
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#sidemenu ul li{
+    margin: 10px 0;
+    text-align: center;
+}
+
+#sidemenu ul li a .fa{
+    display: block;
+    font-size: 2em;
+    padding-top: 8px;
+    padding-bottom: 5px;
+    color: #b7c0cd;
+    transition: 0.2s;
+}
+
+#sidemenu ul li a{
+    width: 100%;
+    position: relative;
+    text-decoration: none;
+    color: #b7c0cd;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+#sidemenu ul li a div{
+    padding-bottom: 8px;
+    transition: 0.2s;
+}
+
+#sidemenu ul li a:hover .fa, #sidemenu ul li a:hover div{
+    color: #fff;
+}
+
+/* Toggle menu on mobile size */
+#sidemenu.show-mobile{
+    transform: translateX(0) !important;
+}
