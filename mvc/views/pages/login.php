@@ -1,5 +1,5 @@
 <div class="signin">
-    <form action="<?php echo ROOT_LINK;?>Login/userLogin" method="POST">
+    <form action="<?php echo ROOT_LINK;?>Login" method="POST">
         <h2>Đăng Nhập</h2>
         <?php if(isset($data['message'])){?>
             <div class="row">

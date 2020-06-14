@@ -42,7 +42,7 @@
     <!-- Message -->
     <?php if(isset($data['message'])){?>
         <div class="row">
-            <div class="col-1 show <?php echo $data['message']['type']?>" id='message'><?php echo $data['message']['mess']?></div>
+            <div class="message col-1 show <?php echo $data['message']['type']?>" ><?php echo $data['message']['mess']?></div>
         </div>
     <?php } ?>
     <!-- Data table -->
@@ -57,10 +57,11 @@
                     <th style="width: 80px">MSNV</th>
                     <th style="width: 200px">Họ tên</th>
                     <th style="width: 200px">Mức lương</th>
-                    <th style="width: 150px">Ngày đi làm</th>
+                    <th style="width: 90px">Ngày công</th>
+                    <th style="width: 150px">Tiền lương</th>
                     <th style="width: 150px">Tiền bảo hiểm</th>
                     <th style="width: 150px">Phụ cấp</th>
-                    <th style="width: 200px">Thực nhận</th>
+                    <th style="width: 180px">Thực nhận</th>
                 </tr>
             </thead>
             <tbody>
@@ -71,10 +72,11 @@
                         <td style="width: 80px"><?php echo $value['employeeID']?></td>
                         <td style="width: 200px"><?php echo $value['fullName']?></td>
                         <td style="width: 200px"><?php echo number_format($value['wage'])?></td>
-                        <td style="width: 150px"><?php echo $value['workDay']?></td>
+                        <td style="width: 90px"><?php echo $value['workDay']?></td>
+                        <td style="width: 150px"><?php echo number_format($value['salary'])?></td>
                         <td style="width: 150px"><?php echo number_format($value['bh'])?></td>
                         <td style="width: 150px"><?php echo number_format($value['phucap'], 2)?></td>
-                        <td style="width: 200px"><?php echo number_format($value['income'])?></td>
+                        <td style="width: 180px"><?php echo number_format($value['income'])?></td>
                     </tr>
                 <?php }}?>
             </tbody>

@@ -8,7 +8,7 @@
     <!-- Message for update, add employee -->
     <?php if(isset($data['message'])){?>
         <div class="row">
-            <div class="col-1 show <?php echo $data['message']['type']?>" id='message'><?php echo $data['message']['mess']?></div>
+            <div class="col-1 show <?php echo $data['message']['type']?>" ><?php echo $data['message']['mess']?></div>
         </div>
     <?php } ?>
         <!-- Basic information -->

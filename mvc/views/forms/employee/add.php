@@ -82,19 +82,20 @@
                         <input type='text' pattern='[0-9]+' id='wage' name="wage" class="form-input" required></input>  
                     </div>
                 </div>
+                <div class="row wrong message" id='add-message'></div>
                 <fieldset class='row'>
                     <legend class='subheader'>Tạo tài khoản: </legend>
                     <div class="row center">
                         <div class="col-3">
-                            <input type='radio' id='manager' name='role' value="manager">
+                            <input type='checkbox' class='typeAccount' id='manager' name='role[]' value="manager" data-position ="Trưởng phòng">
                             <label for='manager'>Trưởng phòng</label>
                         </div>
                         <div class="col-3">
-                            <input type='radio' id='accounting' name='role' value="accountant">
+                            <input type='checkbox' class='typeAccount employee' id='accountant' name='role[]' value="accountant" data-department = 'Kế toán'>
                             <label for='accounting'>Nhân viên kế toán</label>
                         </div>
                         <div class="col-3">
-                            <input type='radio' id='hr' name='role' value="personnel">
+                            <input type='checkbox' class=' typeAccount employee' id='hr' name='role[]' value="personnel" data-department = 'Nhân sự'>
                             <label for='hr'>Nhân viên nhân sự</label>
                         </div>
                     </div>

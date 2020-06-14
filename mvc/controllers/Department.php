@@ -11,6 +11,7 @@
         
         public function show (){
             if (isset($_SESSION['user'])){
+                
                 $this->view('layout1', array_merge($this->transferMessage(), [
                     'page' => 'department',
                     'title' => 'Danh sách phòng ban',

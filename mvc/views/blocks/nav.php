@@ -1,3 +1,4 @@
+<?php $role = $_SESSION['role']?>
 <div class="fa fa-bars show-mobile" id="toggle-btn" data-toggle="sidemenu"></div>   
 <div class="hide-mobile" id="sidemenu">
     <ul id="menu">
@@ -48,7 +49,7 @@
             <?php } ?>
         </li>
         <li>
-            <?php if ($role !== 'manager'){ ?>
+            <?php if ($role == 'admin'){ ?>
                 <a href="<?php echo ROOT_LINK?>User">
                     <div class="fa fa-user"></div>
                     <div>Tài khoản</div>

@@ -34,11 +34,11 @@
             }
         }
 
-        public function getManager(){
-            if (isset($_POST['getManager'])){
-                $data = json_encode($this->departmentModel->getAllDepartmentInfo(), true);
+        public function getManagerAccount(){
+            // if (isset($_POST['positionTitle'])){
+                $data = json_encode($this->userModel->getManagerAccount($_POST), true);
                 echo $data;
-            }
+            // }
         }
     }
 ?>

@@ -1,10 +1,10 @@
-<?php $role = (isset($_SESSION['role'])) ? $_SESSION['role'] : '';?>
+<?php $role = $_SESSION['role']?>
 <!-- Page header -->
 <div class="page-header">
     <div class="row">
         <h2 class='header col-2-3'>Nhân viên</h2>
         <!-- Not display if user is accountant -->
-        <?php if ((!empty($role) && $role != 'accountant') || empty($role)){ ?>
+        <?php if (Permission::hasPermission('Employee', 'add')){ ?>
             <div class="col col-1-3">
                 <div class="btn-primary modal-btn add-btn employee" data-open='add-modal' >
                     <div class="fa fa-plus"></div>
@@ -86,7 +86,7 @@
     <!-- Message for update, add employee -->
     <?php if(isset($data['message'])){?>
         <div class="row">
-            <div class="col-1 show <?php echo $data['message']['type']?>" id='message'><?php echo $data['message']['mess']?></div>
+            <div class="message col-1 show <?php echo $data['message']['type']?>" ><?php echo $data['message']['mess']?></div>
         </div>
     <?php } ?>
     <!-- Message if no result returns-->
@@ -114,7 +114,7 @@
                         foreach ($list as $columns) {
                     ?>
                         <tr class='small' id='<?php echo $columns['employeeID']?>'>
-                            <td class='center' style="width: 60px"><?php echo $columns['employeeID']?></td>
+                            <td class='center' style="width: 60px"><a class='link' href='<?php echo ROOT_LINK?>Employee/detail?employeeID=<?php echo $columns['employeeID']?>'><?php echo $columns['employeeID']?></a></td>
                             <td style="width: 200px"><a class='link' href='<?php echo ROOT_LINK?>Employee/detail?employeeID=<?php echo $columns['employeeID']?>'><?php echo $columns['fullName']?></a></td>
                             <td class='center' style="width: 90px"><?php echo $columns['phone']?></td>
                             <td class='center' style="width: 150px ; padding-left: 10px"><?php echo $columns['address']?></td>
@@ -133,7 +133,7 @@
                                                 </a>
                                             </li>
                                             <!-- Not display if user is accountant -->
-                                            <?php if ((!empty($role) && $role != 'accountant') || empty($role)){ ?>
+                                            <?php if (Permission::hasPermission('Employee', 'edit')){ ?>
                                                 <li>
                                                     <a class="row modal-btn edit-employee" id='<?php echo $columns['employeeID']?>' data-open='edit-modal' data-active='nav-info'>
                                                         <span>Chỉnh sửa</span>

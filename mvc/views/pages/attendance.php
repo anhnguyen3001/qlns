@@ -3,29 +3,25 @@
     $now = new DateTime($date);
     $now->modify('last day of this month');
     $daysOfMonth = $now->format('d');
-    $role = (isset($_SESSION['role'])) ? $_SESSION['role'] : '';
+    $role = $_SESSION['role'];
 ?>
 <!-- Page header -->
 <div class="page-header">
     <div class="row">
         <h2 class='header col-2-3'>Chấm công</h2>
-        <?php if ((!empty($role) && $role == 'manager')){ ?>
+        <?php if (Permission::hasPermission('attendance', 'add')){ ?>
         <div class="col col-1-3">
             <div class="btn-primary modal-btn add-btn" data-open='add-modal'>
                 <div class="fa fa-plus"></div>
                 <strong>Thêm mới</strong>
             </div>
         </div>
-        <?php }?>
+        <?php require_once ROOT .'mvc/views/forms/attendance/add.php';}?>
     </div>
 </div>
-<?php 
-    if ((!empty($role) && $role == 'manager'))
-        require_once ROOT .'mvc/views/forms/attendance/add.php';
-?>
 <div class="page-body">
     <!-- Filter bar -->
-    <?php if (empty($role) || (!empty($role) && $role !== 'manager')){?>
+    <?php if ($role != 'manager'){?>
     <form action="<?php echo ROOT_LINK?>Attendance/show" id='filter-form'>
         <div class="row">
             <div class="group-form col-5">
@@ -57,7 +53,7 @@
     <!-- Message for add -->
     <?php if(isset($data['message'])){?>
         <div class="row">
-            <div class="col-1 show <?php echo $data['message']['type']?>" id='message'><?php echo $data['message']['mess']?></div>
+            <div class="message col-1 show <?php echo $data['message']['type']?>" ><?php echo $data['message']['mess']?></div>
         </div>
     <?php } ?>
     <!-- Data table -->

@@ -20,7 +20,7 @@
 
                 if (!isset($_GET['departmentID'])){
                     // Use for manager review after tick
-                    if (isset($_SESSION['role']) && $_SESSION['role'] = 'manager') 
+                    if ($_SESSION['role'] == 'manager') 
                         $_GET['departmentID'] = $_SESSION['departmentID'];
                     else $_GET['departmentID'] = 1;
                 }

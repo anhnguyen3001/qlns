@@ -2,28 +2,30 @@
     class WageModel extends Database{
         public function getNetSalary($data){
             $query ="
-                SELECT w.`employeeID`, fullName, p.*, `wage`, workDay, IF(workDay < 14, 0, 0.105 * wage) bh, (workDay/26 * allowance) phucap,   
-                    wage*(workDay/26 - (SELECT bh) + (SELECT phucap)) income,`validDate`
+                SELECT w.`employeeID`, fullName, p.*, `wage`, workDay, (wage * workDay/26) salary ,IF(workDay < 14, 0, 0.105 * wage) bh, (workDay/26 * allowance) phucap,   
+                    (SELECT salary - bh + phucap) income,`validDate`
                 FROM wage w
                 JOIN employee e ON e.employeeID = w.employeeID
                 JOIN 
                 (
                     SELECT a.employeeID, COUNT(*) workDay, positionID, departmentID FROM attendance a
-                    JOIN jobhis j ON j.employeeID = a.employeeID
-                    WHERE j.departmentID = ? AND status = 'present' AND EXTRACT(YEAR_MONTH FROM a.date) = EXTRACT(YEAR_MONTH FROM 'time') AND (j.employeeID, startDate) IN 
+                    JOIN 
+                    (
+                        SELECT * FROM jobhis j
+                        WHERE j.departmentID = ? AND startDate = 
                         (
-                            SELECT employeeID, MAX(startDate) FROM jobhis t
-                            WHERE startDate <= 'time'
-                            GROUP BY employeeID
+                            SELECT MAX(startDate) FROM jobhis t 
+                            WHERE t.employeeID = j.employeeID AND t.startDate <= 'time'
                         )
+                    ) j ON j.employeeID = a.employeeID
+                    WHERE status = 'present' AND EXTRACT(YEAR_MONTH FROM a.date) = EXTRACT(YEAR_MONTH FROM 'time') 
                     GROUP BY employeeID
                 ) a ON a.employeeID = w.employeeID
                 JOIN position p ON p.positionID = a.positionID
-                WHERE (w.employeeID, validDate) IN 
+                WHERE validDate =
                 (
-                    SELECT employeeID, MAX(validDate) FROM wage t
-                    WHERE validDate <= 'time'
-                    GROUP BY employeeID
+                    SELECT MAX(validDate) FROM wage t
+                    WHERE validDate <= 'time' AND t.employeeID = w.employeeID
                 )
             ";
 
@@ -38,7 +40,7 @@
 
             $query = str_replace('\'time\'', '?', $query);
             $type = 'i' .str_repeat('s', $repeat);
-        
+
             return $this->select($query, $temp, $type);
         }
 

@@ -45,12 +45,12 @@
                 $password = date('d-m-Y', strtotime($data['dob']));
                 $password = str_replace('-', '', $password);
             } else $password = $data['password'];
-            
+
             $user = [
                 "loginName" => $data['employeeID'],
                 "employeeID" => $data['employeeID'],
                 "password" => $password,
-                "role" => $data['role']
+                "role" => join(' ', array_values($data['role']))
             ];
 
             $column = '(' .join(', ', array_keys($user)) .')';
@@ -59,6 +59,43 @@
             $query = "INSERT INTO user $column VALUES (?, ?, ?, ?)";
 
             return $this->update($query, $user, $type);
+        }
+
+        public function getManagerAccount($data){ 
+            $query = "
+                SELECT d.*, employeeID, fullName
+                FROM department d
+                JOIN 
+                (
+                    SELECT j.employeeID, fullName, j.departmentID FROM jobhis j
+                    JOIN employee e ON e.employeeID = j.employeeID
+                    JOIN position p ON p.positionID = j.positionID
+                    LEFT JOIN user u ON u.employeeID = j.employeeID
+                    WHERE 'pos' (e.resignDate IS NULL OR e.resignDate < NOW()) 
+	                    AND startDate = 
+                        (
+                            SELECT MAX(startDate) FROM jobhis 
+                            WHERE jobhis.employeeID = j.employeeID AND startDate <= NOW()
+                        ) AND u.employeeID IS NULL
+                ) job ON job.departmentID = d.departmentID 
+            ";
+            
+            
+            $type = '';
+            if ($data['departmentTitle'] != '') {
+                $query .= ' WHERE departmentTitle = ?';
+                $type .= 's';
+            } else unset($data['departmentTitle']);
+
+            if ($data['positionTitle'] != ''){
+                $query = preg_replace('/\'pos\'/', 'positionTitle = ? AND', $query);
+                $type .= 's';
+            } else {
+                unset($data['positionTitle']);
+                $query = preg_replace('/\'pos\'/', '', $query);
+            }
+
+            return  $this->select($query, $data, $type);
         }
     }
 ?>

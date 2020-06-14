@@ -1,9 +1,9 @@
-<?php $role = (isset($_SESSION['role'])) ? $_SESSION['role'] : '';?>
+<?php $role = $_SESSION['role']?>
 <!-- Page header -->
 <div class="page-header">
     <div class="row">
         <h2 class='header col-2-3'>Bằng cấp</h2>
-        <?php if ((!empty($role) && $role != 'accountant') || empty($role)){ ?>
+        <?php if (Permission::hasPermission('education', 'add')){ ?>
             <div class="col col-1-3">
                 <div class="btn-primary modal-btn add-btn" data-open='add-modal' id="add-education">
                     <div class="fa fa-plus"></div>
@@ -21,7 +21,7 @@
     <!-- Message for update, add -->
     <?php if(isset($data['message'])){?>
         <div class="row">
-            <div class="col-1 show <?php echo $data['message']['type']?>" id='message'><?php echo $data['message']['mess']?></div>
+            <div class="message col-1 show <?php echo $data['message']['type']?>" ><?php echo $data['message']['mess']?></div>
         </div>
     <?php } ?>
     <!-- Message if no result returns-->
@@ -34,9 +34,9 @@
                 <thead>
                     <tr>
                         <th style="width: 200px">Bằng cấp</th>
-                        <?php if ((!empty($role) && $role != 'accountant') || empty($role)){ ?>
+                        <?php if (Permission::hasPermission('education', 'edit')){ ?>
                             <th style="width: 150px">Chức năng</th>
-                        <?php}?>
+                        <?php } ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,7 +48,7 @@
                             <td id='name-<?php echo $columns['educationID']?>' style="width: 200px">
                                 <a class='link' href="<?php echo ROOT_LINK?>Employee/show?educationID=<?php echo $columns['educationID']?>"><?php echo $columns['qualification']?></a>
                             </td>
-                            <?php if ((!empty($role) && $role != 'accountant') || empty($role)){ ?>
+                            <?php if (Permission::hasPermission('education', 'edit')){ ?>
                                 <td class='action' style="width: 150px">
                                     <div class="fa fa-ellipsis-v dropdown-btn link" data-toggle='dropdown-<?php echo $columns['educationID']?>'></div>
                                     <div class='sub-menu' id='dropdown-<?php echo $columns['educationID']?>'>
@@ -70,5 +70,5 @@
                 </tbody>
             </table>
         </div>
-    <?php }}?>
+    <?php }?>
 </div>

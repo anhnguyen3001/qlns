@@ -7,7 +7,7 @@
         
         public function getAllDepartmentInfo(){
             $query = "
-                SELECT d.departmentID, d.departmentTitle, IF(job.employeeID IS NULL, 'N/A', job.employeeID) employeeID, IF(job.fullName IS NULL, 'N/A', job.fullName) fullName
+                SELECT d.*, IF(job.employeeID IS NULL, 'N/A', job.employeeID) employeeID, IF(job.fullName IS NULL, 'N/A', job.fullName) fullName
                 FROM department d
                 LEFT JOIN 
                 (
@@ -19,7 +19,7 @@
                         (
                             SELECT MAX(startDate) FROM jobhis 
                             WHERE jobhis.employeeID = j.employeeID AND startDate <= NOW()
-                        ) AND (e.resignDate IS NULL OR e.resignDate > NOW())
+                        )
                 ) job ON job.departmentID = d.departmentID
             ";
 

@@ -4,26 +4,41 @@
         <!-- Modal header -->
         <div class="modal-header center">Thêm tài khoản</div>
         <div class="column modal-body">
+            <div class="row wrong message" id='add-message'></div>
             <form action='<?php echo ROOT_LINK?>User/add' id="add-user" method='POST'>
                 <div class="row header-section">Tài khoản cho: </div>
                 <div class="row center" id='typeAccount'>
                     <div class="col-3" style='text-align:left'>
-                        <input type='radio' id='manager' name='role' value="manager" data-toggle='depChoose' data-account='departmentID' required>
+                        <input type='checkbox' class='typeAccount' id='manager' name='role[]' value="manager" data-toggle='depChoose' data-position ="Trưởng phòng">
                         <label for='manager'>Trưởng phòng</label>
                     </div>
                     <div class="col-3">
-                        <input type='radio' id='accountant' name='role' value="accountant" data-toggle='employeeChoose' data-account='employeeID'>
+                        <input type='checkbox' class='typeAccount employee' id='accountant' name='role[]' value="accountant" data-toggle='employeeChoose' data-department = 'Kế toán'>
                         <label for='accountant'>Nhân viên kế toán</label>
                     </div>
                     <div class="col-3">
-                        <input type='radio' id='hr' name='role' value="personnel" data-toggle='employeeChoose' data-account='employeeID'>
+                        <input type='checkbox' class=' typeAccount employee' id='hr' name='role[]' value="personnel" data-toggle='employeeChoose' data-department = 'Nhân sự'>
                         <label for='hr'>Nhân viên nhân sự</label>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row register-info" id='choosePos'>
                     <div class="group-form col-1">
-                        <label for='employeeID' class='label-form'>Mã số nhân viên <span class='required-symbol'>*</span></label>
-                        <input type='text' name='employeeID' id='employeeID' class="form-input disabled" required>
+                        <label class='label-form'>Phòng ban</label>
+                        <select class="form-input more">
+                        </select>
+                    </div>
+                </div>
+                <div class="row register-info" id='empID'>
+                    <div class="group-form col-1">
+                        <label class='label-form'>MSNV</label>
+                        <select class="form-input more" name='employeeID'>
+                        </select>
+                    </div>
+                </div>
+                <div class="row register-info" id='empName'>
+                    <div class="group-form col-1">
+                        <label class='label-form'>Tên nhân viên</label>
+                        <div class="form-input"></div>
                     </div>
                 </div>
                 <div class="row">

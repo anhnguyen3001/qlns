@@ -11,11 +11,6 @@
     define('ACCOUNTANT', 'Nhân viên kế toán');
     define('PERSONNEL', 'Nhân viên nhân sự');
 
-    // Page and action each user can access
-    define('MANAGER_ACCESS', [['page' => ['Attendance', 'Login', 'Ajax']]]);
-    define('ACCOUNTANT_ACCESS', [['page' => ['Wage', 'Login', 'Ajax']], ['page' => ['Employee'], 'action' => ['show', 'detail']], ['page' => ['Attendance', 'Position', 'Department', 'Education'], 'action' => ['show']]]);
-    define('PERSONNEL_ACCESS', [['page' => ['Employee', 'Position', 'Department', 'Education', 'Wage', 'Login', 'Ajax']], ['page' => ['Attendance'], 'action' => ['show']]]);
-
     // Get path
     $path = str_replace("index.php", "", $_SERVER['PHP_SELF']);
     define('ROOT_CSS', $path .'public/');

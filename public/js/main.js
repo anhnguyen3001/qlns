@@ -8,7 +8,7 @@ $(document).ready(function(){
     // Disappear mess, dropdown menu
     $('html').click(function(e){
         // Disappear mess
-        $('#message').removeClass('show');
+        $('.message').removeClass('show');
 
         // Dropdown menu
         $('.dropdown-btn').each(function(){
@@ -149,6 +149,7 @@ $(document).ready(function(){
         
         $('#' + idModal).removeClass('show');
         $('#body').removeClass('modal-open');
+        $('.more').children().remove();
     }
     
     function openModal(modalBtn){

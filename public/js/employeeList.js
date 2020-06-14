@@ -29,7 +29,33 @@ $(document).ready(function(){
                 $('#newEmpID').val(data);
             }
         });
-    })
+
+        $('#add-message').removeClass('show');
+    });
+
+    $('.typeAccount').click(function(){
+        if (/employee/.test($(this).attr('class')) && $('.employee:checked').length > 1){
+            $('#add-message').html('Chọn không hợp lệ');
+            $('#add-message').addClass('show');
+            return false;
+        }
+
+        if ($('#manager').is(':checked')){
+            if($('#position :checked').html().trim() != $(this).attr('data-position')){
+                $('#add-message').html('Loại tài khoản không phù hợp');
+                $('#add-message').addClass('show');
+                return false;
+            };
+        };
+
+        if ($('.employee').is(':checked')){
+            if($('#department :checked').html().trim() != $(this).attr('data-department')){
+                $('#add-message').html('Loại tài khoản không phù hợp');
+                $('#add-message').addClass('show');
+                return false;
+            }
+        }
+    });
 
     // Get info when click edit: employee
     $('.edit-employee').click(function(){
@@ -41,7 +67,6 @@ $(document).ready(function(){
                 data:{'id' : employeeID},
                 dataType: "json",
                 success: function(data){
-                    console.log(data);
                     $('#modal-employeeID').val(data.employeeID);
                     $('#modal-fullname').val(data.fullName);
                     $('#modal-startDate').val(data.startDate);
@@ -88,27 +113,6 @@ $(document).ready(function(){
                     $('#currentDateWage').val(converDateToString(data.validDate));
 
                     posID = $('#currentPos').val();
-
-                    $.ajax({
-                        method: "POST",
-                        url: path + 'Ajax/getWageLevel',
-                        data:{'getWage':true, 'positionID' : posID},
-                        dataType: "json",
-                        success: function(data){
-                            // Set wage-level select input
-                            $('#level').append("<option value='' default selected></option>");
-                            $('#wage').append("<option value='' default selected></option>");
-
-                            for (var i = 0; i < data.length; i++){
-                                $('#level').append(
-                                    '<option value="' + data[i].level +'">' + data[i].level +'</option>'
-                                );
-                                $('#wage').append(
-                                    '<option id="level' + data[i].level +'" ' + 'value="' + data[i].wage +'">' + formatMoney(data[i].wage) +'</option>'
-                                );
-                            }
-                        }
-                    });
                 }
             });
         }

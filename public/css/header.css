@@ -22,16 +22,13 @@ header .container {
 
 .userInfo{
   display: inline-block;
-  width: 150px;
-  width: 100%;
-  margin-right: 20px;
+  margin-right: 30px;
   position: relative;
 } 
 
 .username{
   color: #fff;
   font-size: 110%;
-  margin: 0 20px;
   text-transform: uppercase;
 }
 

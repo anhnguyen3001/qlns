@@ -16,7 +16,7 @@
     <!-- Message for update, add user -->
     <?php if(isset($data['message'])){?>
         <div class="row">
-            <div class="col-1 show <?php echo $data['message']['type']?>" id='message'><?php echo $data['message']['mess']?></div>
+            <div class="message col-1 show <?php echo $data['message']['type']?>" ><?php echo $data['message']['mess']?></div>
         </div>
     <?php } ?>
     <!-- Message if no result returns-->
@@ -52,7 +52,19 @@
                             </td>
                             <td style="width: 200px"><?php echo $columns['loginName']?></td>
                             <td style="width: 150px"><?php echo $columns['password']?></td>
-                            <td style="width: 200px"><?php echo constant(strtoupper($columns['role']))?></td>
+                            <td style="width: 200px">
+                                <?php
+                                    $roles = explode(' ', $columns['role']);
+
+                                    $role = '';
+                                    foreach ($roles as $value) {
+                                        if($role != '') $role .= ', ';
+                                        $role .= constant(strtoupper($value));
+                                    }
+
+                                    echo $role;
+                                ?>
+                            </td>
                             <td class='action center' style="width: 150px">
                                 <div class="fa fa-ellipsis-v dropdown-btn link" data-toggle='dropdown-<?php echo $columns['loginName']?>'></div>
                                 <div class='sub-menu' id='dropdown-<?php echo $columns['loginName']?>'>
