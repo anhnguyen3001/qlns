@@ -1,5 +1,35 @@
 /* Medium devices (tablets, 768px and up) */
 @media (max-width: 992px) {
+    .modal-dialog{
+        width: 70%;
+    }
+
+    .small-form{
+        width: initial;
+    }
+
+    .group-form .focus-label{
+        font-size: 100%;
+    }
+
+    .btn-primary{
+        font-size: 105% !important;
+    }
+
+    .table-responsive{
+        overflow-x: scroll;
+    }
+
+    .card-body .left{
+        flex: 0 0 40%;
+    }
+
+    .card-body .right{
+        flex: 0 0 60%;
+    }
+}
+
+@media (max-width: 768px) { 
     nav .hide-mobile{
         width: 20%;
         transform: translateX(-100%);
@@ -12,30 +42,24 @@
         margin-left: 0;
     }
 
-    .group-form .focus-label{
-        font-size: 120%;
+    .modal-dialog{
+        width: 80%;
     }
 
-    .btn-primary{
-        font-size: 105% !important;
-    }
-
-    .table-responsive{
-        overflow-x: scroll;
-    }
-}
-
-@media (max-width: 768px) { 
     .col-5{
         flex: 0 0 23%;
     }
+
     .col-span-1{
         flex: 0 0 100%;
     }
 
+    #search-section{
+        flex: 0 0 100%;
+    }
+
     #search-btn{
-        display: inline-block;
-        width: 30%;
+        width: 25%;
     }
 
     .add-btn{
@@ -49,8 +73,46 @@
 
 /* Small devices (landscape phones, 576px and up) */
 @media (max-width: 572px){
-    .col-5{
+    .page-header .header{
+        font-size: 170%;
+    }
+    .modal-body .nav{
+        font-size: 92%;
+    }
+
+    .card-body{
+        display: block;
+    }
+
+    .card-body .left{
+        border: none;
+        border-bottom: 2px dashed #FF9B44;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .card-body .right{
+        padding-top: 15px;
+    }
+
+    .container-fluid{
+        padding: 20px 20px 0 20px;
+    }
+
+    .col-5, .col-2, .col-3, .col-4{
         flex: 0 0 100%;
+    }
+
+    #filter-form .group-form{
+        margin: 15px 0 !important;
+    }
+
+    .focus-label{
+        font-size: 110%;
+    }
+
+    #typeAccount div{
+        margin: 8px 0;
     }
 }
 

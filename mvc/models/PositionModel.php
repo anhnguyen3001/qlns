@@ -10,16 +10,9 @@
 
         public function getPositionInfo($data){
             $where = '';
-            $type = '';
+            $type = $this->getType($data);
 
             $where = 'WHERE ' .join(' = ? AND ', array_keys($data)) .' = ?';
-    
-            foreach ($data as $key => $value) {
-                switch ($key){
-                    case ('positionID'): $type .= 'i'; break;
-                    default: $type .= 's'; break;
-                }
-            }
 
             $query = 'SELECT * FROM position ' .$where;
       
@@ -28,19 +21,10 @@
 
         public function getPosition($id){
             $query = "
-                SELECT p.positionID, positionTitle, level, wage, validDate
+                SELECT p.*
                 FROM position p 
-                LEFT JOIN 
-                (
-                    SELECT positionID, level, wage, validDate FROM wage w
-                    WHERE validDate = 
-                    (
-                        SELECT MAX(validDate) FROM wage
-                        WHERE wage.level = w.level AND w.positionID = wage.positionID
-                    )
-                ) wage ON p.positionID = wage.positionID
                 WHERE p.positionID = $id
-                ORDER BY level ASC
+                ORDER BY allowance DESC
             ";
 
             return $this->select($query);
@@ -50,13 +34,7 @@
             $id = $data['positionID'];
             unset($data['positionID']);
 
-            $type = '';
-            foreach($data as $key => $value){
-                switch ($key){
-                    case 'positionTitle': $type .= 's'; break;
-                    default: $type .= 'd'; break;
-                }
-            }
+            $type = $this->getType($data);
 
             $set = 'SET ' .join(' = ?,', array_keys($data)) .' = ?';
 
@@ -68,23 +46,30 @@
         }
 
         public function add($data){
-            $type = '';
+            $type = $this->getType($data);
             $columns = '(' .join(', ', array_keys($data)) .')';
             $values = '(' .str_repeat('?, ', sizeof($data) - 1) .'?)';
-
-            foreach($data as $key => $value){
-                switch ($key){
-                    case 'positionTitle': $type .= 's'; break;
-                    default: $type .= 'i'; break;
-                }
-            }
 
             $query = "
                 INSERT INTO position $columns
                 VALUES $values    
             ";
-            
+
             return $this->update($query, $data, $type);
+        }
+
+        private function getType($data){
+            $type = '';
+
+            foreach($data as $key => $value){
+                switch ($key){
+                    case 'positionTitle': $type .= 's'; break;
+                    case 'positionID': $type .= 'i'; break;
+                    default: $type .= 'd'; break;
+                }
+            }
+
+            return $type;
         }
     }
 ?>

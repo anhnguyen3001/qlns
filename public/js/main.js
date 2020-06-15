@@ -29,6 +29,9 @@ $(document).ready(function(){
             });
         }
         
+        if(/edit-info/.test($(this).attr('id')) && $('input#modal-employeeID').val() == '')
+            e.preventDefault();
+
         if (/wrong/.test($(this).attr('class')))
             e.preventDefault();
     });
@@ -64,12 +67,12 @@ $(document).ready(function(){
     // Edit user
     $('.edit-user').click(function(){
         var username = $(this).attr('id');
-
         $('.username').val(username);
+        
         $.ajax({
             method: "POST",
             url: path + 'Ajax/getUser',
-            data:{'username' : username},
+            data:{'loginName' : username},
             dataType: "json",
             success: function(data){
                 $('#check-oldPass').val(data.password);
@@ -115,9 +118,6 @@ $(document).ready(function(){
         });
 
         $(temp).trigger('reset');
-
-        // Remove part was added when click modal-btn
-        $('.add').children().remove();
     })
 
     $('#month').blur(function(){

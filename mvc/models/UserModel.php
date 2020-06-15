@@ -25,7 +25,7 @@
             $query = "
                 UPDATE user
                 SET password = ?
-                WHERE username = ?
+                WHERE loginName = ?
             ";
 
             return $this->update($query, $data, 'ss');

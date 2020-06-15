@@ -31,14 +31,14 @@
         <div class="row" style="font-size: 110%; font-weight:600; color:#6c757d">Không tồn tại chức vụ</div>
     <?php }else {?>
         <!-- Data table -->
-        <div class="table-responsive row">
+        <div class="area-table row">
             <table class='center'>
                 <thead>
                     <tr>
-                        <th style="width: 200px">Chức vụ</th>
-                        <th style="width: 200px">Hệ số phụ cấp</th>
+                        <th style="min-width:150px">Chức vụ</th>
+                        <th style="max-width:80px">Hệ số phụ cấp</th>
                         <?php if (Permission::hasPermission('position', 'edit')){ ?>
-                            <th style="width: 150px">Chức năng</th>
+                            <th >Chức năng</th>
                         <?php }?>
                     </tr>
                 </thead>
@@ -48,12 +48,12 @@
                         foreach ($list as $columns) {
                     ?>
                         <tr class='small' id='<?php echo $columns['positionID']?>'>
-                            <td style="width: 200px">
+                            <td style="min-width:150px">
                                 <a class='link' id='name-<?php echo $columns['positionID']?>' href='<?php echo ROOT_LINK?>Employee/show?positionID=<?php echo $columns['positionID']?>'><?php echo $columns['positionTitle']?></a>
                             </td>
-                            <td id='allowance-<?php echo $columns['positionID']?>' style="width: 200px"><?php echo $columns['allowance'] ?></td>
+                            <td style="max-width:80px" id='allowance-<?php echo $columns['positionID']?>' style="width: 200px"><?php echo $columns['allowance'] ?></td>
                             <?php if (Permission::hasPermission('position', 'edit')){ ?>
-                                <td class='action' style="width: 150px">
+                                <td class='action' >
                                     <div class="fa fa-ellipsis-v dropdown-btn link" data-toggle='dropdown-<?php echo $columns['positionID']?>'></div>
                                     <div class='sub-menu' id='dropdown-<?php echo $columns['positionID']?>'>
                                         <ul>

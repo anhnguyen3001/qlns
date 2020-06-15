@@ -47,7 +47,7 @@
                     </table>
                 </div>
                 <div class="row center">
-                    <input type="submit" class='col-3 btn-primary save-btn' data-submit='add-modal' id="save-btn" value="Lưu">
+                    <input type="submit" class='btn-primary save-btn' data-submit='add-modal' id="save-btn" value="Lưu">
                 </div>
             </form>
         </div>

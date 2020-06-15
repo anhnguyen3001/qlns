@@ -55,7 +55,7 @@ class EmployeeModel extends Database{
                         $type .= 's';
                     break;    
                     case 'fullName':
-                        $data[$key] = '%' .mb_strtolower($value, 'UTF-8') .'%';
+                        $data[$key] = '%' .$value .'%';
                         $query .= ' AND fullName LIKE ?';
                         $type .= 's';
                     break;    
@@ -67,7 +67,7 @@ class EmployeeModel extends Database{
                 }
             } else unset($data[$key]);
         }
-
+        
         // total result
         $totalResult = sizeof($this->select($query, $data, $type));
         
@@ -112,7 +112,7 @@ class EmployeeModel extends Database{
             WHERE w.validDate = 
             (
                 SELECT MAX(validDate) FROM wage t
-                WHERE t.validDate <= NOW() AND t.employeeID = t.employeeID	
+                WHERE t.validDate <= NOW() AND t.employeeID = w.employeeID	
             )
         ) w ON w.employeeID = j.employeeID
         WHERE e.employeeID = ? AND startDate = 
@@ -129,7 +129,11 @@ class EmployeeModel extends Database{
             SELECT e.employeeID, fullName
             FROM employee e 
             JOIN jobhis j ON e.employeeID = j.employeeID
-            WHERE startDate = (SELECT MAX(startDate) FROM jobhis job WHERE job.employeeID = j.employeeID AND startDate <= NOW()) AND departmentID = ? AND (e.resignDate IS NULL OR e.resignDate > NOW()) 
+            WHERE startDate = 
+            (
+                SELECT MAX(startDate) FROM jobhis job 
+                WHERE job.employeeID = j.employeeID AND startDate <= NOW()
+            ) AND departmentID = ? AND (e.resignDate IS NULL OR e.resignDate > NOW()) 
         ";
 
         return $this->select($query, [$id], 'i');
@@ -140,7 +144,11 @@ class EmployeeModel extends Database{
         $type = '';
 
         foreach ($data as $key => $value) {
-            $data[$key] = ($value == "") ? NULL : $value;
+            if ($value == ''){
+                unset($data[$key]);
+                continue;
+            }
+            
             switch ($key){
                 case 'employeeID': $job[$key] = $value;
                 case 'fullName': case 'address': case 'dob': case 'phone': case 'gender':

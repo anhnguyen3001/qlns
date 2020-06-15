@@ -26,13 +26,16 @@ $(document).ready(function(){
 
     // Choose type of account
     $('.typeAccount').click(function(){
-        $('#empName .form-input').html('');
         if (/employee/.test($(this).attr('class')) && $('.employee:checked').length > 1){
             $('#add-message').html('Chọn không hợp lệ');
             $('#add-message').addClass('show');
             return false;
         }
-        
+
+        $('#empName .form-input').html('');
+        $('#choosePos select').val('');
+        $('#empID select').val('');
+
         var pos = '', dep = '';
         
         if ($('.employee').is(':checked')){
@@ -108,6 +111,7 @@ $(document).ready(function(){
                             option.setAttribute('data-empID', data[i].employeeID);
                             option.setAttribute('data-name', data[i].fullName);
                         }
+
                         $('#choosePos select').attr('required', 'required');
                         $('#empID select').removeAttr('required');
 

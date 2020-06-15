@@ -6,7 +6,7 @@
         <div class="column modal-body">
             <form action="<?php echo ROOT_LINK?>Employee/add" id="add-employee" method='POST'>
                 <div class="row">
-                    <div class="group-form col-2">
+                    <div class="group-form col-2 required">
                         <label for='newEmpID' class='label-form'>MSNV <span class='required-symbol'>*</span></label>
                         <input type='text' name='employeeID' id='newEmpID' class="form-input disabled" readonly>
                     </div>
@@ -101,7 +101,7 @@
                     </div>
                 </fieldset>
                 <div class="row center">
-                    <input type="submit" class='col-4 btn-primary btn submit-btn save-btn' data-submit='add-modal' value="Thêm">
+                    <input type="submit" class='btn-primary btn submit-btn save-btn' data-submit='add-modal' value="Thêm">
                 </div>
             </form>
         </div>

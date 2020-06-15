@@ -20,9 +20,7 @@
 
                 if (!isset($_GET['departmentID'])){
                     // Use for manager review after tick
-                    if ($_SESSION['role'] == 'manager') 
-                        $_GET['departmentID'] = $_SESSION['departmentID'];
-                    else $_GET['departmentID'] = 1;
+                    $_GET['departmentID'] = isset($_SESSION['departmentID']) ? $_SESSION['departmentID'] : 1;
                 }
 
                 $this->view('layout1',array_merge($this->transferMessage(), [

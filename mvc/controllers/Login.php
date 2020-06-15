@@ -43,11 +43,12 @@
             if ($data['loginName'] != 'admin'){
                 $_SESSION['username'] = $data['employeeID'];
 
-                if (preg_match($_SESSION['role'])){
+                if (preg_match('/manager/', $_SESSION['role'])){
                     $temp = $this->employeeModel->getDepartmentOfEmp($data['employeeID']);
                     $_SESSION['departmentID'] = $temp['departmentID'];
                     $_SESSION['departmentTitle'] = $temp['departmentTitle'];
-                } else $_SESSION['user'] = $this->employeeModel->getEmployeeName($data['employeeID'])['fullName'];
+                } 
+                $_SESSION['user'] = $this->employeeModel->getEmployeeName($data['employeeID'])['fullName'];
             } else $_SESSION['user'] = $data['loginName'];
         }   
 
@@ -59,7 +60,7 @@
 
         public function redirectPage(){
             if ($_SESSION['role'] == 'manager')
-                $url = 'Wage';
+                $url = 'Attendance';
             else 
                 $url = 'Employee';
 

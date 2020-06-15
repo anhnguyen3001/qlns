@@ -69,7 +69,7 @@
                 <span class="border"></span>
             </div>
             <input type="hidden" name='edit-id' id='editID'>
-            <div class="group-form col-5 col-span-1 center"><input type="submit" class='btn-primary' data-submit='filter-form' id="search-btn" value="Tìm kiếm"></div>
+            <div class="group-form col-5 center" id='search-section'><input type="submit" class='btn-primary' data-submit='filter-form' id="search-btn" value="Tìm kiếm"></div>
         </div>
         <div class="row">
             <div class="col-1 filter">
@@ -94,7 +94,7 @@
         <div class="row" style="font-size: 110%; font-weight:600; color:#6c757d">Không có nhân viên</div>
     <?php }else {?>
         <!-- Data table -->
-        <div class="table-responsive row">
+        <div class="table-responsive area-table row">
             <table>
                 <thead class='center'>
                     <tr>
@@ -112,22 +112,31 @@
                     <?php 
                         $list = $data['employees']['employee'];
                         foreach ($list as $columns) {
+                            $empID = $columns['employeeID'];
+                            $name = $columns['fullName'];
+                            $phone = $columns['phone'] == null ? 'N/A' : $columns['phone'];
+                            $address = $columns['address'] == null ? 'N/A' : $columns['address'];
+                            $qualification = $columns['qualification'] == null ? 'N/A' : $columns['qualification'];
+                            $posID = $columns['positionID'];
+                            $pos = $columns['positionTitle'];
+                            $depID = $columns['departmentID'];
+                            $dep = $columns['departmentTitle'];
                     ?>
-                        <tr class='small' id='<?php echo $columns['employeeID']?>'>
-                            <td class='center' style="width: 60px"><a class='link' href='<?php echo ROOT_LINK?>Employee/detail?employeeID=<?php echo $columns['employeeID']?>'><?php echo $columns['employeeID']?></a></td>
-                            <td style="width: 200px"><a class='link' href='<?php echo ROOT_LINK?>Employee/detail?employeeID=<?php echo $columns['employeeID']?>'><?php echo $columns['fullName']?></a></td>
-                            <td class='center' style="width: 90px"><?php echo $columns['phone']?></td>
-                            <td class='center' style="width: 150px ; padding-left: 10px"><?php echo $columns['address']?></td>
-                            <td class='center' style="width: 120px"><?php echo $columns['qualification']?></td>
-                            <td class='center' style="width: 150px"><a class='link' href='<?php echo ROOT_LINK?>Employee/show?positionID=<?php echo $columns['positionID']?>'><?php echo $columns['positionTitle']?></a></td>
-                            <td class='center' style="width: 200px"><a class='link' href='<?php echo ROOT_LINK?>Employee/show?departmentID=<?php echo $columns['departmentID']?>'><?php echo $columns['departmentTitle']?></a></td>
+                        <tr class='small' id='<?php echo $empID?>'>
+                            <td class='center' style="width: 60px"><a class='link' href='<?php echo ROOT_LINK?>Employee/detail?employeeID=<?php echo $empID?>'><?php echo $empID?></a></td>
+                            <td style="width: 200px"><a class='link' href='<?php echo ROOT_LINK?>Employee/detail?employeeID=<?php echo $empID?>'><?php echo $name?></a></td>
+                            <td class='center' style="width: 90px"><?php echo $phone?></td>
+                            <td class='center' style="width: 150px ; padding-left: 10px"><?php echo $address?></td>
+                            <td class='center' style="width: 120px"><?php echo $qualification?></td>
+                            <td class='center' style="width: 150px"><a class='link' href='<?php echo ROOT_LINK?>Employee/show?positionID=<?php echo $posID?>'><?php echo $pos?></a></td>
+                            <td class='center' style="width: 200px"><a class='link' href='<?php echo ROOT_LINK?>Employee/show?departmentID=<?php echo $depID?>'><?php echo $dep?></a></td>
                             <td class='action center' style="width: 150px">
                                 <div class="fa fa-ellipsis-v dropdown-btn link" data-toggle='dropdown-<?php echo $columns['employeeID']?>'></div>
-                                <div class='sub-menu' id='dropdown-<?php echo $columns['employeeID']?>'>
+                                <div class='sub-menu' id='dropdown-<?php echo $empID?>'>
                                     <ul>
                                         <div class="dropdown-list">
                                             <li>
-                                                <a class='row' href='<?php echo ROOT_LINK?>Employee/detail?employeeID=<?php echo $columns['employeeID']?>'>
+                                                <a class='row' href='<?php echo ROOT_LINK?>Employee/detail?employeeID=<?php echo $empID?>'>
                                                     <span>Chi tiết</span>
                                                     <div class="fa fa-info"></div>
                                                 </a>
@@ -135,7 +144,7 @@
                                             <!-- Not display if user is accountant -->
                                             <?php if (Permission::hasPermission('Employee', 'edit')){ ?>
                                                 <li>
-                                                    <a class="row modal-btn edit-employee" id='<?php echo $columns['employeeID']?>' data-open='edit-modal' data-active='nav-info'>
+                                                    <a class="row modal-btn edit-employee" id='<?php echo $empID?>' data-open='edit-modal' data-active='nav-info'>
                                                         <span>Chỉnh sửa</span>
                                                         <div class="fa fa-edit"></div>
                                                     </a>

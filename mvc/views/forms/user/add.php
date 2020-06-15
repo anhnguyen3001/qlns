@@ -1,13 +1,13 @@
 <div class="modal" tabindex='1' id='add-modal'>
     <div class="layer" data-open='add-modal' data-refresh='#add-user'></div>
-    <div class="modal-dialog small-form">
+    <div class="modal-dialog">
         <!-- Modal header -->
         <div class="modal-header center">Thêm tài khoản</div>
         <div class="column modal-body">
             <div class="row wrong message" id='add-message'></div>
             <form action='<?php echo ROOT_LINK?>User/add' id="add-user" method='POST'>
-                <div class="row header-section">Tài khoản cho: </div>
-                <div class="row center" id='typeAccount'>
+                <div class="row header-section label-form">Tài khoản cho: </div>
+                <div class="row" id='typeAccount'>
                     <div class="col-3" style='text-align:left'>
                         <input type='checkbox' class='typeAccount' id='manager' name='role[]' value="manager" data-toggle='depChoose' data-position ="Trưởng phòng">
                         <label for='manager'>Trưởng phòng</label>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="row center">
-                    <input type="submit" class='col-4 btn-primary save-btn' id='add-user-btn' data-submit='add-modal' value="Thêm">
+                    <input type="submit" class='btn-primary save-btn' id='add-user-btn' data-submit='add-modal' value="Thêm">
                 </div>
             </form>
         </div>

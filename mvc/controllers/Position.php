@@ -57,7 +57,7 @@
                     if ($size == sizeof($_POST)){
                         $name = $_POST['positionTitle'];
                         // Check if this position exists in db
-                        if (empty($this->positionModel->getPosition(['positionTitle' => $name]))){
+                        if (empty($this->positionModel->getPositionInfo(['positionTitle' => $name]))){
                             if ($this->positionModel->add($_POST)){
                                 $messageType = 'success';
                                 $mess = 'Thêm chức vụ thành công';
@@ -69,7 +69,7 @@
                     $_SESSION['mess'] = $mess;
                 }
 
-                // header('Location: ' .ROOT_LINK .'Position');
+                header('Location: ' .ROOT_LINK .'Position');
                 exit;
             } else {
                 $this->viewLogin();

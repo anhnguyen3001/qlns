@@ -29,13 +29,13 @@
         <div class="row" style="font-size: 110%; font-weight:600; color:#6c757d">Chưa tồn tại bằng cấp</div>
     <?php }else {?>
         <!-- Data table -->
-        <div class="table-responsive row">
+        <div class="area-table row">
             <table class='center'>
                 <thead>
                     <tr>
-                        <th style="width: 200px">Bằng cấp</th>
+                        <th>Bằng cấp</th>
                         <?php if (Permission::hasPermission('education', 'edit')){ ?>
-                            <th style="width: 150px">Chức năng</th>
+                            <th>Chức năng</th>
                         <?php } ?>
                     </tr>
                 </thead>
@@ -45,11 +45,11 @@
                         foreach ($list as $columns) {
                     ?>
                         <tr id='<?php echo $columns['educationID']?>'>
-                            <td id='name-<?php echo $columns['educationID']?>' style="width: 200px">
+                            <td id='name-<?php echo $columns['educationID']?>'>
                                 <a class='link' href="<?php echo ROOT_LINK?>Employee/show?educationID=<?php echo $columns['educationID']?>"><?php echo $columns['qualification']?></a>
                             </td>
                             <?php if (Permission::hasPermission('education', 'edit')){ ?>
-                                <td class='action' style="width: 150px">
+                                <td class='action'>
                                     <div class="fa fa-ellipsis-v dropdown-btn link" data-toggle='dropdown-<?php echo $columns['educationID']?>'></div>
                                     <div class='sub-menu' id='dropdown-<?php echo $columns['educationID']?>'>
                                         <ul>

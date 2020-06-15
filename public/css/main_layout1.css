@@ -54,12 +54,12 @@ ul{
 /* MAIN */
 main{
     margin-top: 60px;
-    margin-left: 6%;
+    margin-left: 70px;
     position: relative;
 }
 
 .page-header{
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .container {
@@ -85,12 +85,6 @@ main{
     margin: 0;
 }
 
-.submit-section{
-    display: flex;
-    justify-content: center;
-    margin: 30px 0;
-}
-
 .btn-primary{
     display: inline-block;
     padding: 10px 30px;
@@ -101,6 +95,10 @@ main{
     transition: 0.3s;
     text-align: center;
     text-transform: uppercase;
+}
+
+#search-btn{
+    width: 100%;
 }
 
 .add-btn{
@@ -140,10 +138,6 @@ form{
     font-size: 110%;
     text-indent: 5px;
     color: #1f1f1f;
-}
-
-input[type=submit]{
-    width: 100%;
 }
 
 option {
@@ -204,7 +198,7 @@ option {
 }
 
 .modal-dialog{
-    width: 60%;
+    width: 55%;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -280,7 +274,7 @@ option {
 .save-btn{
     background-color: #FF9B44;
     border: 1px solid #FF9B44;
-    width: 30%;
+    width: 25%;
     min-width: 150px;
     font-size: 140%;
 }
@@ -406,14 +400,17 @@ input[type=date]{
 }
 
 /* Table */
-.table-responsive{
+.area-table{
     width: 100%;
     color: #3c3c3c;
 }
 
+.table-responsive table{
+    table-layout: fixed;
+}
+
 table{
     padding: 5px;
-    table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
     font-weight: 600;
@@ -669,10 +666,6 @@ tbody tr:nth-child(even){
     font-size: 150%;
     color: #4B596C;
     text-align: left;
-}
-
-.left{
-    flex: 2 2;
 }
 
 .card-header .fa{

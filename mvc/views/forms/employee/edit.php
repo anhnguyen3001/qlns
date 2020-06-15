@@ -18,7 +18,7 @@
         $wage = $data['employee']['wage'];
         $currentDateWage = date('d-m-Y', strtotime($data['employee']['validDate']));
 
-        
+        echo $edu;
     }
 ?>
 <div class="modal" tabindex='1' id='edit-modal'>
@@ -33,7 +33,6 @@
                 <li class='nav-items' id='nav-salary' data-toggle='#edit-salary'>Mức lương</li>
             </ul>
             <form action="<?php echo ROOT_LINK;?>Employee/edit" class='toggle-form edit-employee' id='edit-info' method='POST'>
-                
                 <div class="row">
                     <div class="group-form col-2">
                         <label for='id' class='label-form'>MSNV <span class='required-symbol'>*</span></label>
@@ -69,9 +68,9 @@
                         <!-- Get qualification -->
                         <label for='modal-education' class='label-form'>Bằng cấp</label>
                         <select name="educationID" id='modal-education-1' class="form-input">
-                            <option id="default-edu" <?php if (empty($edu)) echo 'default selected'?>></option>
+                            <option id="edu-default" <?php if (empty($edu)) echo 'selected'?>></option>
                             <?php foreach($data['educations'] as $columns):?>
-                                <option id='<?php echo $columns['educationID']?>' value="<?php echo $columns['educationID']?>" <?php if (!empty($edu) && $edu == $columns['educationID']) echo 'default selected'?>><?php echo $columns['qualification']?></option>
+                                <option id='edu-<?php echo $columns['educationID']?>' value="<?php echo $columns['educationID']?>" <?php if (isset($edu) && $edu == $columns['educationID']) echo 'selected'?>><?php echo $columns['qualification']?></option>
                             <?php endforeach;?>
                         </select>
                     </div>
@@ -86,8 +85,8 @@
                         <input type='date' name ='resignDate' id='modal-resignDate' class="form-input" value="<?php echo isset($resignDate) ? $resignDate : ''?>">
                     </div>
                 </div>
-                <div class="submit-section center">
-                    <input type="submit" name='edit-info' class='col-4 btn-primary submit-btn save-btn' value="Lưu">
+                <div class="row">
+                    <input type="submit" name='edit-info' class='btn-primary submit-btn save-btn' value="Lưu">
                 </div>
             </form>
             <form action="<?php echo ROOT_LINK;?>Employee/edit" class='edit-position toggle-form edit-employee' id='edit-position' method='POST'>
@@ -97,7 +96,7 @@
                         <label class='label-form'>Chức vụ <span class='required-symbol'>*</span></label>
                         <select id='current-position' name="positionID" class="form-input" required>
                             <?php foreach($data['positions'] as $columns):?>
-                                <option value="<?php echo $columns['positionID']?>" <?php echo (isset($posName) && $posName == $columns['positionTitle']) ? 'selected' : '' ?>>
+                                <option id="pos-<?php echo $columns['positionID']?>" value="<?php echo $columns['positionID']?>" <?php echo (isset($posName) && $posName == $columns['positionTitle']) ? 'selected' : '' ?>>
                                 <?php echo $columns['positionTitle']?>
                                 </option>
                             <?php endforeach;?>
@@ -107,7 +106,7 @@
                         <label for='current-department' class='label-form'>Phòng ban <span class='required-symbol'>*</span></label>
                         <select id='current-department' name="departmentID" class="form-input" required>
                             <?php foreach($data['departments'] as $columns):?>
-                                <option value="<?php echo $columns['departmentID']?>" <?php echo (isset($depName) && $depName == $columns['departmentTitle']) ? 'selected' : '' ?>>
+                                <option id="dep-<?php echo $columns['departmentID']?>" value="<?php echo $columns['departmentID']?>" <?php echo (isset($depName) && $depName == $columns['departmentTitle']) ? 'selected' : '' ?>>
                                 <?php echo $columns['departmentTitle']?>
                                 </option>
                             <?php endforeach;?>
@@ -119,8 +118,8 @@
                     </div>
                 </div>
                 <input type='hidden' class='empID-hidden' name='employeeID' value="<?php echo isset($id) ? $id : ''?>">
-                <div class="submit-section center">
-                    <input type="submit" name='edit-position' class='col-4 btn-primary submit-btn save-btn' value="Lưu">
+                <div class="row">
+                    <input type="submit" name='edit-position' class='btn-primary submit-btn save-btn' value="Lưu">
                 </div>
             </form>
             <form action="<?php echo ROOT_LINK;?>Employee/edit" class='edit-position toggle-form edit-employee' id='add-position' method='POST'>
@@ -156,8 +155,8 @@
                         <input type='date' name='startDate' id='nextDate' class="form-input" required>
                     </div>
                 </div>
-                <div class="row center">
-                    <input type="submit" name='edit-position' class='col-4 btn-primary submit-btn save-btn' value="Thêm">
+                <div class="row">
+                    <input type="submit" name='edit-position' class='btn-primary submit-btn save-btn' value="Thêm">
                 </div>
             </form>
             <form action="<?php echo ROOT_LINK;?>Employee/edit" class='toggle-form edit-employee' id='edit-salary' method='POST'>               
@@ -186,8 +185,8 @@
                         <input type='date' name='validDate' id='newDate-salary' class="form-input" required>
                     </div>
                 </div>
-                <div class="row center">
-                    <input type="submit" name='add-salary' class='col-4 btn-primary submit-btn save-btn' value="Thêm">
+                <div class="row">
+                    <input type="submit" name='add-salary' class='btn-primary submit-btn save-btn' value="Thêm">
                 </div>
             </form>
         </div>

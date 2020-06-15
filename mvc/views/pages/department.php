@@ -29,14 +29,14 @@
         <div class="row" style="font-size: 110%; font-weight:600; color:#6c757d">Chưa có phòng ban</div>
     <?php }else {?>
         <!-- Data table -->
-        <div class="table-responsive row">
+        <div class="area-table row">
             <table class='center'>
                 <thead>
                     <tr>
-                        <th style="width: 200px">Phòng ban</th>
-                        <th style="width: 200px">Trưởng phòng</th>
+                        <th style="min-width:120px">Phòng ban</th>
+                        <th style="min-width:120px">Trưởng phòng</th>
                         <?php if (Permission::hasPermission('department', 'edit')){ ?>
-                            <th style="width: 150px">Chức năng</th>
+                            <th style="">Chức năng</th>
                         <?php }?>
                     </tr>
                 </thead>
@@ -46,10 +46,10 @@
                         foreach ($list as $columns) {
                     ?>
                         <tr id='<?php echo $columns['departmentID']?>'>
-                            <td style="width: 200px">
+                            <td style="min-width:120px">
                                 <a class='link' id='name-<?php echo $columns['departmentID']?>' href="<?php echo ROOT_LINK?>Employee/show?departmentID=<?php echo $columns['departmentID']?>"><?php echo $columns['departmentTitle']?></a>
                             </td>
-                            <td id='name' style="width: 200px">
+                            <td id='name' style="min-width:120px">
                                 <?php if ($columns['fullName'] !== 'N/A'){?>
                                     <a class='link' href="<?php echo ROOT_LINK?>Employee/detail?employeeID=<?php echo  $columns['employeeID']?>">
                                 <?php }?>
@@ -59,7 +59,7 @@
                                 <?php }?>
                             </td>
                             <?php if (Permission::hasPermission('department', 'edit')){ ?>
-                                <td class='action' style="width: 150px">
+                                <td class='action' style="  ">
                                     <div class="fa fa-ellipsis-v dropdown-btn link" data-toggle='dropdown-<?php echo $columns['departmentID']?>'></div>
                                     <div class='sub-menu' id='dropdown-<?php echo $columns['departmentID']?>'>
                                         <ul>

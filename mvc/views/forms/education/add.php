@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="row center">
-                    <input type="submit" class='col-3 btn-primary btn submit-btn save-btn' data-submit='add-modal' value="Thêm">
+                    <input type="submit" class='btn-primary btn submit-btn save-btn' data-submit='add-modal' value="Thêm">
                 </div>
             </form>
         </div>

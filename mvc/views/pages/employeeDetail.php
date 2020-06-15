@@ -16,11 +16,11 @@
             <?php $info = $data['employee']?>
             <div class="container-fluid">
                 <div class="card-header row">
-                    <div class='left'>Thông tin cơ bản</div>
+                    <div class='col-2-3'>Thông tin cơ bản</div>
                     <div class="fa fa-pencil-alt modal-btn edit-employee" data-open='edit-modal' data-active='nav-info'></div>
                 </div>
                 <div class="card-body">
-                    <div class="column col-2 left">
+                    <div class="column left">
                         <h3 class="half-line employee-name"><?php echo $info['fullName']?></h4>
                         <h4 class="half-line text"><?php echo $info['positionTitle']?></h5>
                         <h5 class="line text"><?php echo $info['departmentTitle']?></h6>
@@ -31,7 +31,7 @@
                         <?php }?>
                         <div class="line text small ">Ngày nghỉ việc: <?php echo ($info['resignDate'] != 'N/A') ? date('d-m-Y', strtotime($info['resignDate'])) : $info['resignDate']?></div>
                     </div>
-                    <ul class="personal-info column col-2 right">
+                    <ul class="personal-info column right">
                         <li class='row'>
                             <div class="title col-1-3">Giới tính: </div>
                             <div class="text col-2-3"><?php echo $info['gender']?></div>
@@ -60,7 +60,7 @@
         <section class="row jobhis card">
             <div class="container-fluid">
                 <div class="card-header row">
-                    <div class='left'>Quá trình công tác</div>
+                    <div class='col-2-3'>Quá trình công tác</div>
                     <div class="fa fa-plus modal-btn edit-employee" data-open='edit-modal' data-active='nav-position'></div>
                 </div>
                 <div class="table-responsive">

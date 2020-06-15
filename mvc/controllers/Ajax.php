@@ -40,5 +40,10 @@
                 echo $data;
             // }
         }
+
+        public function getUser(){
+            $data = json_encode($this->userModel->getUser($_POST), true);
+            echo $data;
+        }
     }
 ?>

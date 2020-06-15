@@ -12,6 +12,7 @@
     define('EDIT', 3);
     define('ADD', 4);
     define('DELETE', 5);
+    define('UPDATEPASSWORD', 6);
 
     class Permission{
         public static function hasPermission($controller, $action){
@@ -25,6 +26,7 @@
 
             $role = $_SESSION['role'];
             $accessPages = [];
+
             if ($role == 'admin') $accessPages = [111 => 1, 16 => 2];
             else {
                 if (preg_match('/manager/', $role)) $accessPages = [16 => 18];
@@ -32,11 +34,12 @@
                 if (preg_match('/personnel/', $role)) {
                     if (isset($accessPages)) $accessPages = Permission::mergeAction($accessPages, [47 => 1, 16 => 2]);
                     else $accessPages = [47 => 1, 16 => 2];
-                }
-                else if (preg_match('/accountant/', $role)) {
+                } else if (preg_match('/accountant/', $role)) {
                     if (isset($accessPages)) $accessPages = Permission::mergeAction($accessPages, [62 => 2, 1 => 6]);
                     else $accessPages = [62 => 2, 1 => 6];
                 }
+
+                $accessPages[64] = 64;
             }
 
             foreach ($accessPages as $key => $value) {

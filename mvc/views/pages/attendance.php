@@ -24,7 +24,7 @@
     <?php if ($role != 'manager'){?>
     <form action="<?php echo ROOT_LINK?>Attendance/show" id='filter-form'>
         <div class="row">
-            <div class="group-form col-5">
+            <div class="group-form col-3">
                 <select id='department' name="departmentID" class="form-control" >
                     <?php 
                         if (!empty($data['filters']['departmentID']))
@@ -40,13 +40,13 @@
                 <label for="department" class='focus-label'>Phòng ban</label>
                 <span class="border"></span>
             </div>
-            <div class="group-form col-5">
+            <div class="group-form col-3">
                 <input type="text" name="month" class="form-control" id="month"
                     value='<?php echo isset($data['filters']['month']) ? $data['filters']['month'] : '' ?>'>
                 <label for="month" class='focus-label'>Tháng</label>
                 <span class="border"></span>
             </div>
-            <div class="group-form col-5"><input type="submit" class='btn-primary' data-submit='filter-form' id="search-btn" value="Tìm kiếm"></div>
+            <div class="group-form col-5 center" id='search-section'><input type="submit" class='btn-primary' data-submit='filter-form' id="search-btn" value="Tìm kiếm"></div>
         </div>
     </form>
     <?php }?>

@@ -17,7 +17,7 @@
                         </div>
                         <input type='hidden' name='positionID' id='currentID' class='positionID'>
                         <div class="row center">
-                            <input type="submit" class='col-4 btn-primary submit-btn save-btn' value="Lưu">
+                            <input type="submit" class='btn-primary submit-btn save-btn' value="Lưu">
                         </div>
                     </form>
                 </div>
