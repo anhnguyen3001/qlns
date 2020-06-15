@@ -1,14 +1,14 @@
 <?php
     class Database{
         protected $conn;
-        protected $host = 'localhost';
-        protected $username = 'root';
-        protected $password = '';
-        protected $dbname = 'test';
-        // protected $host = 'remotemysql.com';
-        // protected $username = 'qmjtIGTXEU';
-        // protected $password = 'soYqFpK4uT';
-        // protected $dbname = 'qmjtIGTXEU';
+        // protected $host = 'localhost';
+        // protected $username = 'root';
+        // protected $password = '';
+        // protected $dbname = 'test';
+        protected $host = 'remotemysql.com';
+        protected $username = 'qmjtIGTXEU';
+        protected $password = 'soYqFpK4uT';
+        protected $dbname = 'qmjtIGTXEU';
 
         public function __construct(){
             $this->conn = new mysqli($this->host, $this->username, $this->password, $this->dbname);
