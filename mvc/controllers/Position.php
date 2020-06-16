@@ -49,7 +49,7 @@
             if (isset($_SESSION['user'])){
                 if (!empty($_POST)){
                     $messageType = 'fail';
-                    $mess = 'Cập nhật chức vụ không thành công';
+                    $mess = 'Thêm chức vụ không thành công';
                     
                     $size = sizeof($_POST);
                     $_POST = $this->validation->validate($_POST);
@@ -68,7 +68,7 @@
                     $_SESSION['messType'] = $messageType;
                     $_SESSION['mess'] = $mess;
                 }
-
+                
                 header('Location: ' .ROOT_LINK .'Position');
                 exit;
             } else {

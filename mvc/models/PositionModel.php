@@ -18,18 +18,7 @@
       
             return $this->selectSingle($query, $data, $type);
         }
-
-        public function getPosition($id){
-            $query = "
-                SELECT p.*
-                FROM position p 
-                WHERE p.positionID = $id
-                ORDER BY allowance DESC
-            ";
-
-            return $this->select($query);
-        }
-
+        
         public function updateInfo($data){
             $id = $data['positionID'];
             unset($data['positionID']);
@@ -54,7 +43,7 @@
                 INSERT INTO position $columns
                 VALUES $values    
             ";
-
+            
             return $this->update($query, $data, $type);
         }
 
