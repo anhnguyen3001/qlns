@@ -77,8 +77,8 @@
         public function validate($data){
             foreach ($data as $key => $value) {
                 if (!empty($value)){
-                    $value = $data[$key] = $this->formatData($key, $value);
-                    if (!$value) return [];
+                    $data[$key] = $this->formatData($key, $value);
+                    if (!$data[$key]) return [];
                     // switch ($key){
                     //     case 'fullName': case 'gender': case 'qualification': 
                     //     case 'departmentTitle': case 'positionTitle':
