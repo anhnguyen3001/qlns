@@ -6,26 +6,22 @@
                     (SELECT salary - bh + phucap) income,`validDate`
                 FROM wage w
                 JOIN employee e ON e.employeeID = w.employeeID
+                JOIN jobhis j ON j.employeeID = w.employeeID AND j.departmentID = ? 
+                JOIN position p ON p.positionID = j.positionID
                 JOIN 
                 (
-                    SELECT a.employeeID, COUNT(*) workDay, positionID, departmentID FROM attendance a
-                    JOIN 
-                    (
-                        SELECT * FROM jobhis j
-                        WHERE j.departmentID = ? AND startDate = 
-                        (
-                            SELECT MAX(startDate) FROM jobhis t 
-                            WHERE t.employeeID = j.employeeID AND t.startDate <= 'time'
-                        )
-                    ) j ON j.employeeID = a.employeeID
+                    SELECT a.employeeID, COUNT(*) workDay FROM attendance a
                     WHERE status = 'present' AND EXTRACT(YEAR_MONTH FROM a.date) = EXTRACT(YEAR_MONTH FROM 'time') 
                     GROUP BY employeeID
                 ) a ON a.employeeID = w.employeeID
-                JOIN position p ON p.positionID = a.positionID
                 WHERE validDate =
                 (
                     SELECT MAX(validDate) FROM wage t
                     WHERE validDate <= 'time' AND t.employeeID = w.employeeID
+                ) AND startDate = 
+                (
+                    SELECT MAX(startDate) FROM jobhis t 
+                    WHERE t.employeeID = w.employeeID AND t.startDate <= 'time'
                 )
             ";
 
