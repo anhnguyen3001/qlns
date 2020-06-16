@@ -46,19 +46,19 @@
         public function formatData($key, $value){
             $value = trim($value);
             $value = str_replace('/\s{2,}/', ' ', $value);
-            $value = strtoupper($value);
+            // $value = strtoupper($value);
 
-            // switch ($key){
-            //     case 'departmentTitle': case 'positionTitle': case 'gender': case 'qualification':
-            //         $value = $this->mb_ucfirst($value);
-            //         break;
-            //     case 'fullName': case 'address':  
-            //         $value = mb_convert_case($value, MB_CASE_TITLE, "UTF-8");
-            //         break;
-            //     case 'dob': case 'startDate': case 'previousDate'; case 'validDate':
-            //         $value = date ('Y-m-d', strtotime($value));
-            //         break;
-            // }
+            switch ($key){
+                case 'departmentTitle': case 'positionTitle': case 'gender': case 'qualification':
+                    $value = $this->mb_ucfirst($value);
+                    break;
+                case 'fullName': case 'address':  
+                    $value = mb_convert_case($value, MB_CASE_TITLE, "UTF-8");
+                    break;
+                case 'dob': case 'startDate': case 'previousDate'; case 'validDate':
+                    $value = date ('Y-m-d', strtotime($value));
+                    break;
+            }
 
             return $value;
         }
