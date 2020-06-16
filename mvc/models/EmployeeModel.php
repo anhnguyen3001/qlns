@@ -1,5 +1,5 @@
 <?php
-class EmployeeModel extends Database{
+class EmployeeModel extends MasterModel{
     public function getDepartmentOfEmp($id){
         $query = "
             SELECT fullName, d.*
@@ -106,22 +106,17 @@ class EmployeeModel extends Database{
         LEFT JOIN education edu ON edu.educationID = e.educationID
         JOIN position p ON p.positionID = j.positionID
         JOIN department d ON d.departmentID = j.departmentID
-        JOIN 
+        JOIN wage w ON w.employeeID = e.employeeID
+        WHERE e.employeeID = '$id' AND startDate = 
         (
-            SELECT employeeID, wage, validDate FROM wage w
-            WHERE w.validDate = 
-            (
-                SELECT MAX(validDate) FROM wage t
-                WHERE t.validDate <= NOW() AND t.employeeID = w.employeeID	
-            )
-        ) w ON w.employeeID = j.employeeID
-        WHERE e.employeeID = ? AND startDate = 
+            SELECT MAX(startDate) FROM jobhis t WHERE t.employeeID = e.employeeID AND startDate <= NOW()
+        ) AND w.validDate = 
         (
-            SELECT MAX(startDate) FROM jobhis t WHERE t.employeeID = j.employeeID AND startDate <= NOW()
+            SELECT MAX(validDate) FROM wage t
+            WHERE t.validDate <= NOW() AND t.employeeID = e.employeeID	
         )";
         
-        
-        return $this->selectSingle($query, [$id], 's');
+        return $this->selectSingle($query);
     }
 
     public function getEmployeeOfDep($id){

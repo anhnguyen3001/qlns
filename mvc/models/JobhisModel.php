@@ -1,5 +1,5 @@
 <?php 
-    class JobhisModel extends Database{
+    class JobhisModel extends MasterModel{
         public function insert($data){
             $columns = "(" .join(" ,", array_keys($data)) .")";
             $values = "(" .str_repeat('?, ', sizeof($data) - 1) ."?)";

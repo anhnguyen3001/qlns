@@ -1,5 +1,5 @@
 <?php
-    class EducationModel extends Database{
+    class EducationModel extends MasterModel{
         public function getAllEducation(){
             $query = "
                 SELECT * FROM education

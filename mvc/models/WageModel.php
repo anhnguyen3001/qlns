@@ -1,5 +1,5 @@
 <?php
-    class WageModel extends Database{
+    class WageModel extends MasterModel{
         public function getNetSalary($data){
             $query ="
                 SELECT w.`employeeID`, fullName, p.*, `wage`, workDay, (wage * workDay/26) salary ,IF(workDay < 14, 0, 0.105 * wage) bh, (workDay/26 * allowance) phucap,   

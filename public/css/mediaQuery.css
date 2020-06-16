@@ -27,6 +27,14 @@
     .card-body .right{
         flex: 0 0 60%;
     }
+
+    .pagination-container{
+        flex: 0 0 70%;
+    }
+
+    .result{
+        flex: 0 0 30%;
+    }
 }
 
 @media (max-width: 768px) { 
@@ -68,6 +76,14 @@
 
     .row {
         margin-bottom: 10px;
+    }
+
+    .pagination-container{
+        flex: 0 0 60%;
+    }
+
+    .result{
+        flex: 0 0 40%;
     }
 }
 

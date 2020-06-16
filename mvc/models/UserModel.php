@@ -1,5 +1,5 @@
 <?php
-    class UserModel extends Database{
+    class UserModel extends MasterModel{
         public function getAllUser(){
             $query = "
                 SELECT loginName, password, role, u.employeeID ,if (u.employeeID IS NULL,  loginName, fullName) username

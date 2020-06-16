@@ -1,5 +1,5 @@
 <?php
-    class DepartmentModel extends Database{
+    class DepartmentModel extends MasterModel{
         public function getAllDepartment(){
             $query = "SELECT * FROM department";
             return $this->select($query);            

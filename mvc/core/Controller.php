@@ -1,6 +1,7 @@
 <?php
     abstract class Controller{
         public function model($model){
+            require_once ROOT .'mvc/models/MasterModel.php';
             require_once ROOT .'mvc/models/' .$model .".php";
             return new $model;
         }

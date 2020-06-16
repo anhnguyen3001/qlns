@@ -1,5 +1,5 @@
 <?php
-    class PositionModel extends Database{
+    class PositionModel extends MasterModel{
         public function getAllPosition(){
             $query = "
                 SELECT * FROM position

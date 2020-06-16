@@ -1,5 +1,5 @@
 <?php
-    class AttendanceModel extends Database{
+    class AttendanceModel extends MasterModel{
         public function getAttendance($data){
             $empID = $data['employeeID'];
             $date = $data['date'];

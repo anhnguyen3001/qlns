@@ -70,7 +70,6 @@ $(document).ready(function(){
             data:{'id' : employeeID},
             dataType: "json",
             success: function(data){
-                console.log(data);
                 $('#modal-employeeID').val(data.employeeID);
                 $('#modal-fullname').val(data.fullName);
                 $('#modal-startDate').val(data.startDate);
@@ -123,14 +122,14 @@ $(document).ready(function(){
         navItem.removeClass('active');
 
         var formID = $(navItem).attr('data-toggle'); 
-        $(formID).removeClass('show');
+        $('#' + formID).removeClass('show');
     }
 
     function activeNavItem(navItem){
         navItem.addClass('active');
 
         var formID = $(navItem).attr('data-toggle'); 
-        $(formID).addClass('show');
+        $('#' + formID).addClass('show');
     }
 
     function converToBlankString(value){

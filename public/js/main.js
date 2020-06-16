@@ -134,14 +134,15 @@ $(document).ready(function(){
         navItem.removeClass('active');
 
         var formID = $(navItem).attr('data-toggle'); 
-        $(formID).removeClass('show');
+        $('#' + formID).removeClass('show');
     }
 
     function activeNavItem(navItem){
         navItem.addClass('active');
 
         var formID = $(navItem).attr('data-toggle'); 
-        $(formID).addClass('show');
+        console.log(formID);
+        $('#' + formID).addClass('show');
     }
 
     function closeModal(modalBtn){
