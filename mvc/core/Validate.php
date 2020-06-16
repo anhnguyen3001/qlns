@@ -46,7 +46,7 @@
         public function formatData($key, $value){
             $value = trim($value);
             $value = str_replace('/\s{2,}/', ' ', $value);
-            $value = mb_strtoupper($value, 'UTF-8');
+            $value = strtoupper($value);
 
             // switch ($key){
             //     case 'departmentTitle': case 'positionTitle': case 'gender': case 'qualification':
