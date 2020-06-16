@@ -67,7 +67,7 @@
                 if (!empty($value)){
                     $value = $data[$key] = $this->formatData($key, $value);
 
-                    switch ($key){
+                    // switch ($key){
                         // case 'fullName': case 'gender': case 'qualification': 
                         // case 'departmentTitle': case 'positionTitle':
                         //     if(!$this->isName($value)) return []; break;
@@ -79,8 +79,8 @@
                         //     if(!$this->isAllowance($value)) return []; break;
                         // case 'phone': 
                         //     if(!$this->isPhone($value)) return []; break;
-                        default: break;
-                    }
+                        // default: break;
+                    // }
                 }
             }
             print_r($data);            
