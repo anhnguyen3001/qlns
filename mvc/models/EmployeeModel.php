@@ -184,7 +184,7 @@ class EmployeeModel extends MasterModel{
         }
 
         
-        $query .= 'SET ' .$set ."WHERE employeeID = ?";
+        $query .= 'SET ' .$set ." WHERE employeeID = ?";
     
         return $this->update($query, $data, $type);
     }

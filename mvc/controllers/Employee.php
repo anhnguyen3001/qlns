@@ -67,19 +67,21 @@
         }
 
         public function edit(){
-            if (isset($_SESSION['user']) && isset($_POST)){
+            if (isset($_SESSION['user'])){
                 $messageType = 'fail';
                 $mess = "Cập nhật không thành công";
-                // if(!empty($_POST)){
-                //     if (isset($_POST['edit-info'])){
-                //         unset($_POST['edit-info']);
-                //         $_POST = $this->validation->validate($_POST);
+                if(!empty($_POST)){
+                    if (isset($_POST['edit-info'])){
+                        unset($_POST['edit-info']);
+                        $_POST = $this->validation->validate($_POST);
                         
-                //         if(sizeof($_POST) !== 0 && $this->employeeModel->updateInformation($_POST)){
-                //             $messageType = 'success';
-                //             $mess = "Cập nhật thành công";
-                //         }
-                //     } else if (isset($_POST['add-position'])){
+                        if(sizeof($_POST) !== 0 && $this->employeeModel->updateInformation($_POST)){
+                            $messageType = 'success';
+                            $mess = "Cập nhật thành công";
+                        }
+                    } 
+                }
+                // else if (isset($_POST['add-position'])){
                 //         unset($_POST['add-position']);
                 //         $_POST = $this->validation->validate($_POST);
                 //         $posID = $_POST['positionID'];
@@ -146,11 +148,10 @@
                 //         }
                 //     }
 
-                //     $_SESSION['messType'] = $messageType;
-                //     $_SESSION['mess'] = $mess;
-                // }
-                echo '1';
-                // header('Location: ' .ROOT_LINK .'Employee');
+                    $_SESSION['messType'] = $messageType;
+                    $_SESSION['mess'] = $mess;
+                
+                header('Location: ' .ROOT_LINK .'Employee');
                 exit;
             } else {
                 $this->viewLogin();
