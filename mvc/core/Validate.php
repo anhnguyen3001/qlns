@@ -38,8 +38,8 @@
         // Format Data
         function mb_ucfirst($string) {
             $encoding = "UTF-8";
-            $string = mb_strtolower($string, $encoding);
-            $firstChr = mb_strtoupper(mb_substr($string, 0, 1,$encoding),$encoding);
+            $string = mb_convert_case($string, MB_CASE_LOWER ,$encoding);
+            $firstChr = mb_convert_case(mb_substr($string, 0, 1,$encoding), MB_CASE_UPPER,$encoding);
             return $firstChr . mb_substr($string, 1, null, $encoding);
         }
 
