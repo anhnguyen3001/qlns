@@ -1,5 +1,8 @@
 {
-    "require": { 
+    "name": "bka/qlns",
+    "description": "this is my first website about human resources",
+    "minimum-stability": "dev",
+    "require": {
         "ext-mbstring": "*"
     }
 }
