@@ -74,11 +74,11 @@
                     if (isset($_POST['edit-info'])){
                         unset($_POST['edit-info']);
                         $_POST = $this->validation->validate($_POST);
-                        
-                        if(sizeof($_POST) !== 0 && $this->employeeModel->updateInformation($_POST)){
-                            $messageType = 'success';
-                            $mess = "Cập nhật thành công";
-                        }
+                        print_r($_POST);
+                        // if(sizeof($_POST) !== 0 && $this->employeeModel->updateInformation($_POST)){
+                        //     $messageType = 'success';
+                        //     $mess = "Cập nhật thành công";
+                        // }
                     } 
                 }
                 // else if (isset($_POST['add-position'])){
