@@ -75,85 +75,85 @@
                         unset($_POST['edit-info']);
 
                         $_POST = $this->validation->validate($_POST);
-                        print_r($_POST);
-                        // if(sizeof($_POST) !== 0 && $this->employeeModel->updateInformation($_POST)){
-                        //     $messageType = 'success';
-                        //     $mess = "Cập nhật thành công";
-                        // }
+
+                        if(sizeof($_POST) !== 0 && $this->employeeModel->updateInformation($_POST)){
+                            $messageType = 'success';
+                            $mess = "Cập nhật thành công";
+                        }
                     } 
-                }
-                // else if (isset($_POST['add-position'])){
-                //         unset($_POST['add-position']);
-                //         $_POST = $this->validation->validate($_POST);
-                //         $posID = $_POST['positionID'];
-                //         $depID = $_POST['departmentID'];
-                //         $date = $_POST['startDate'];
+                } else if (isset($_POST['add-position'])){
+                        unset($_POST['add-position']);
+                        $_POST = $this->validation->validate($_POST);
+                        $posID = $_POST['positionID'];
+                        $depID = $_POST['departmentID'];
+                        $date = $_POST['startDate'];
                         
-                //         // Current position
-                //         $currentPos = $_POST['currentPos'];
-                //         $currentDep = $_POST['currentDep'];
-                //         $previousDate = $_POST['currentPosDate'];
-                //         unset($_POST['currentPos']);
-                //         unset($_POST['currentDep']);
-                //         unset($_POST['currentPosDate']);
+                        // Current position
+                        $currentPos = $_POST['currentPos'];
+                        $currentDep = $_POST['currentDep'];
+                        $previousDate = $_POST['currentPosDate'];
+                        unset($_POST['currentPos']);
+                        unset($_POST['currentDep']);
+                        unset($_POST['currentPosDate']);
                         
-                //         if ($previousDate >= $date) 
-                //             $mess = 'Thời gian này đã tồn tại công việc';
-                //         else if ($currentDep == $depID && $currentPos == $posID)
-                //             $mess = 'Công việc đã tồn tại';
-                //         else {
-                //             $positionTitle = $this->positionModel->getPositionInfo(['positionID' =>$_POST['positionID']])['positionTitle'];
+                        if ($previousDate >= $date) 
+                            $mess = 'Thời gian này đã tồn tại công việc';
+                        else if ($currentDep == $depID && $currentPos == $posID)
+                            $mess = 'Công việc đã tồn tại';
+                        else {
+                            $positionTitle = $this->positionModel->getPositionInfo(['positionID' =>$_POST['positionID']])['positionTitle'];
                             
-                //             if ($positionTitle != 'Trưởng phòng' || ($positionTitle =='Trưởng phòng' 
-                //             && $this->departmentModel->getDepartmentInfo($_POST['departmentID'])['employeeID'] == 'N/A')){
-                //                 if ($this->jobhisModel->insert($_POST)) {
-                //                     $messageType = 'success';
-                //                     $mess = "Cập nhật thành công";
-                //                 }
-                //             }
-                //         }   
-                //     } else if (isset($_POST['add-salary'])){
-                //         unset($_POST['add-salary']);
-                //         $_POST = $this->validation->validate($_POST);
+                            if ($positionTitle != 'Trưởng phòng' || ($positionTitle =='Trưởng phòng' 
+                            && $this->departmentModel->getDepartmentInfo($_POST['departmentID'])['employeeID'] == 'N/A')){
+                                if ($this->jobhisModel->insert($_POST)) {
+                                    $messageType = 'success';
+                                    $mess = "Cập nhật thành công";
+                                }
+                            }
+                        }   
+                    } else if (isset($_POST['add-salary'])){
+                        unset($_POST['add-salary']);
+                        $_POST = $this->validation->validate($_POST);
 
-                //         $wage = $_POST['wage'];
-                //         $date = $_POST['validDate'];
+                        $wage = $_POST['wage'];
+                        $date = $_POST['validDate'];
 
-                //         // Current
-                //         $currentWage = $_POST['currentWage'];
-                //         $previousDate = $_POST['currentDateWage'];
-                //         unset($_POST['currentWage']);
-                //         unset($_POST['currentDateWage']);
-                //         unset($_POST['wage']);
+                        // Current
+                        $currentWage = $_POST['currentWage'];
+                        $previousDate = $_POST['currentDateWage'];
+                        unset($_POST['currentWage']);
+                        unset($_POST['currentDateWage']);
+                        unset($_POST['wage']);
 
-                //         if ($previousDate >= $date) 
-                //             $mess = 'Thời gian này đã tồn tại mức lương';
-                //         else if ($currentWage == $wage)
-                //             $mess = 'Mức lương đã tồn tại';
-                //         else if ($this->wageModel->insert($_POST)) {
-                //             $messageType = 'success';
-                //             $mess = "Cập nhật thành công";
-                //         }
-                //     } else if (isset($_POST['edit-position'])){
-                //         unset($_POST['edit-position']);
+                        if ($previousDate >= $date) 
+                            $mess = 'Thời gian này đã tồn tại mức lương';
+                        else if ($currentWage == $wage)
+                            $mess = 'Mức lương đã tồn tại';
+                        else if ($this->wageModel->insert($_POST)) {
+                            $messageType = 'success';
+                            $mess = "Cập nhật thành công";
+                        }
+                    } else if (isset($_POST['edit-position'])){
+                        unset($_POST['edit-position']);
 
-                //         $_POST = $this->validation->validate($_POST);
-                //         $positionTitle = $this->positionModel->getPositionInfo(['positionID' =>$_POST['positionID']])['positionTitle'];
+                        $_POST = $this->validation->validate($_POST);
+                        $positionTitle = $this->positionModel->getPositionInfo(['positionID' =>$_POST['positionID']])['positionTitle'];
 
-                //         if ($positionTitle != 'Trưởng phòng' || ($positionTitle =='Trưởng phòng' 
-                //         && $this->departmentModel->getDepartmentInfo($_POST['departmentID'])['employeeID'] == 'N/A')){
-                //             if ($this->jobhisModel->updateInfo($_POST)) {
-                //                 $messageType = 'success';
-                //                 $mess = "Cập nhật thành công";
-                //             }
-                //         }
-                //     }
-
-                    $_SESSION['messType'] = $messageType;
-                    $_SESSION['mess'] = $mess;
+                        if ($positionTitle != 'Trưởng phòng' || ($positionTitle =='Trưởng phòng' 
+                        && $this->departmentModel->getDepartmentInfo($_POST['departmentID'])['employeeID'] == 'N/A')){
+                            if ($this->jobhisModel->updateInfo($_POST)) {
+                                $messageType = 'success';
+                                $mess = "Cập nhật thành công";
+                            }
+                        }
+                    }
                 
-                    echo $mess;
-                // header('Location: ' .ROOT_LINK .'Employee');
+
+                $_SESSION['messType'] = $messageType;
+                $_SESSION['mess'] = $mess;
+                
+
+                header('Location: ' .ROOT_LINK .'Employee');
                 exit;
             } else {
                 $this->viewLogin();
