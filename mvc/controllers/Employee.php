@@ -75,7 +75,7 @@
                         unset($_POST['edit-info']);
                         $_POST = $this->validation->validate($_POST);
                         
-                        if(sizeof($_POST) !== 0 && $this->employeeModel->updateInformation($_POST)){
+                        if(sizeof($_POST) !== 0 ){
                             $messageType = 'success';
                             $mess = "Cập nhật thành công";
                         }
