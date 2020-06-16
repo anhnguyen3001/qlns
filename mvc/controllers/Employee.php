@@ -75,7 +75,7 @@
                         unset($_POST['edit-info']);
                         $_POST = $this->validation->validate($_POST);
                         
-                        if(sizeof($_POST) !== 0 ){
+                        if(sizeof($_POST) !== 0 && $this->employeeModel->updateInformation($_POST)){
                             $messageType = 'success';
                             $mess = "Cập nhật thành công";
                         }
@@ -151,7 +151,8 @@
                     $_SESSION['messType'] = $messageType;
                     $_SESSION['mess'] = $mess;
                 
-                header('Location: ' .ROOT_LINK .'Employee');
+                    echo $mess;
+                // header('Location: ' .ROOT_LINK .'Employee');
                 exit;
             } else {
                 $this->viewLogin();
