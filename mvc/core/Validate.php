@@ -38,15 +38,15 @@
         // Format Data
         function mb_ucfirst($string) {
             $encoding = "UTF-8";
-            $string = mb_convert_case($string, MB_CASE_LOWER ,$encoding);
-            $firstChr = mb_convert_case(mb_substr($string, 0, 1,$encoding), MB_CASE_UPPER,$encoding);
+            $string = mb_strtolower($string, $encoding);
+            $firstChr = mb_strtoupper(mb_substr($string, 0, 1,$encoding),$encoding);
             return $firstChr . mb_substr($string, 1, null, $encoding);
         }
 
         public function formatData($key, $value){
             $value = trim($value);
             $value = str_replace('/\s{2,}/', ' ', $value);
-            $value = mb_convert_case($value, MB_CASE_TITLE, "UTF-8");
+            $value = mb_strtoupper($value);
 
             // switch ($key){
             //     case 'departmentTitle': case 'positionTitle': case 'gender': case 'qualification':
