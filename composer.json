@@ -3,6 +3,7 @@
     "description": "this is my first website about human resources",
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.3.3"
+        "php": ">=5.3.3",
+        "ext-mbstring": "*"
     }
 }
