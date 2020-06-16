@@ -73,12 +73,8 @@
                 if(!empty($_POST)){
                     if (isset($_POST['edit-info'])){
                         unset($_POST['edit-info']);
-                        // $this->validation->validate($_POST);
-                        foreach($_POST as $key => $value){
-                            $_POST[$key] = $this->validation->formatData($key, $value);
-                        }
 
-                        // $_POST = $this->validation->validate($_POST);
+                        $_POST = $this->validation->validate($_POST);
                         print_r($_POST);
                         // if(sizeof($_POST) !== 0 && $this->employeeModel->updateInformation($_POST)){
                         //     $messageType = 'success';

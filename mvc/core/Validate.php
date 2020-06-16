@@ -46,7 +46,6 @@
         public function formatData($key, $value){
             $value = trim($value);
             $value = str_replace('/\s{2,}/', ' ', $value);
-            // $value = strtoupper($value);
 
             switch ($key){
                 case 'departmentTitle': case 'positionTitle': case 'gender': case 'qualification':
@@ -68,23 +67,23 @@
                 if (!empty($value)){
                     $value = $data[$key] = $this->formatData($key, $value);
 
-                    // switch ($key){
-                        // case 'fullName': case 'gender': case 'qualification': 
-                        // case 'departmentTitle': case 'positionTitle':
-                        //     if(!$this->isName($value)) return []; break;
-                        // case 'address':
-                        //     if(!$this->isAddress($value)) return []; break;
-                        // case 'wage': 
-                        //     if(!$this->isNumber($value)) return []; break;
-                        // case 'allowance':
-                        //     if(!$this->isAllowance($value)) return []; break;
-                        // case 'phone': 
-                        //     if(!$this->isPhone($value)) return []; break;
-                        // default: break;
-                    // }
+                    switch ($key){
+                        case 'fullName': case 'gender': case 'qualification': 
+                        case 'departmentTitle': case 'positionTitle':
+                            if(!$this->isName($value)) return []; break;
+                        case 'address':
+                            if(!$this->isAddress($value)) return []; break;
+                        case 'wage': 
+                            if(!$this->isNumber($value)) return []; break;
+                        case 'allowance':
+                            if(!$this->isAllowance($value)) return []; break;
+                        case 'phone': 
+                            if(!$this->isPhone($value)) return []; break;
+                        default: break;
+                    }
                 }
             }
-            print_r($data);            
+            
             return $data;
         }
     }
