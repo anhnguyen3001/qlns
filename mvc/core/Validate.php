@@ -46,7 +46,7 @@
         public function formatData($key, $value){
             $value = trim($value);
             $value = str_replace('/\s{2,}/', ' ', $value);
-            $value = $this->mb_ucfirst($value);
+            $value = mb_convert_case($value, MB_CASE_TITLE, "UTF-8");
 
             // switch ($key){
             //     case 'departmentTitle': case 'positionTitle': case 'gender': case 'qualification':
