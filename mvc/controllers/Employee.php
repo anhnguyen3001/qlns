@@ -74,7 +74,7 @@
                     if (isset($_POST['edit-info'])){
                         unset($_POST['edit-info']);
                         // $this->validation->validate($_POST);
-                        $this->validation->formatDate($_POST['fullName'], 'fullName');
+                        $this->validation->formatData($_POST['fullName'], 'fullName');
                         // $_POST = $this->validation->validate($_POST);
                         // print_r($_POST);
                         // if(sizeof($_POST) !== 0 && $this->employeeModel->updateInformation($_POST)){
