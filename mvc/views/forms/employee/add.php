@@ -85,7 +85,7 @@
                 <div class="row wrong message" id='add-message'></div>
                 <fieldset class='row'>
                     <legend class='subheader'>Tạo tài khoản: </legend>
-                    <div class="row center">
+                    <div class="row center" id='typeAccount'>
                         <div class="col-3">
                             <input type='checkbox' class='typeAccount' id='manager' name='role[]' value="manager" data-position ="Trưởng phòng">
                             <label for='manager'>Trưởng phòng</label>

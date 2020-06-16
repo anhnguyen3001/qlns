@@ -52,14 +52,19 @@
                 $set
                 WHERE employeeID = ? AND startDate = 
                 (
-                    SELECT MAX(startDate) FROM jobhis t
-                    WHERE t.employeeID = ? AND startDate <= (NOW())
+                    SELECT latestDate 
+                    FROM 
+                    (    
+                        SELECT MAX(startDate) latestDate FROM jobhis t
+                        WHERE t.employeeID = ? AND startDate <= NOW()
+                    ) t
                 )
             ";
+
             array_push($data, $id);
             array_push($data, $id);
             $type .= 'ss';
-
+            
             return $this->update($query, $data, $type);
         }
     }

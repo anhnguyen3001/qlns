@@ -6,9 +6,10 @@ class EmployeeModel extends MasterModel{
             FROM jobhis j
             JOIN employee e ON e.employeeID = j.employeeID
             JOIN department d ON d.departmentID = j.departmentID
-            WHERE (J.employeeID, startDate) IN (
-                SELECT employeeID, MAX(startDate) FROM jobhis t
-                WHERE startDate <= NOW() AND employeeID = ?
+            WHERE j.employeeID = ? AND startDate = 
+            (
+                SELECT MAX(startDate) FROM jobhis t
+                WHERE startDate <= NOW() AND employeeID = j.employeeID
             )
         ";
         
@@ -36,7 +37,11 @@ class EmployeeModel extends MasterModel{
             LEFT JOIN education edu ON edu.educationID = e.educationID
             JOIN position p ON p.positionID = j.positionID
             JOIN department d ON d.departmentID = j.departmentID
-            WHERE startDate = (SELECT MAX(startDate) FROM jobhis job WHERE job.employeeID = j.employeeID AND startDate <= NOW())
+            WHERE startDate = 
+            (
+                SELECT MAX(startDate) FROM jobhis job 
+                WHERE job.employeeID = j.employeeID AND startDate <= NOW()
+            )
         ";
 
         // Get limit

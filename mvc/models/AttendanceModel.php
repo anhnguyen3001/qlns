@@ -33,7 +33,7 @@
                 JOIN department d ON d.departmentID = j.departmentID
                 WHERE startDate = (
                     SELECT MAX(startDate) FROM jobhis job 
-                    WHERE job.employeeID = j.employeeID AND job.startDate <= ?
+                    WHERE job.employeeID = j.employeeID AND EXTRACT(YEAR_MONTH FROM job.startDate) <= EXTRACT(YEAR_MONTH FROM ?)
                 ) AND MONTH(a.date) = MONTH(?) AND YEAR(a.date) = YEAR(?) AND j.departmentID = ? AND (e.resignDate IS NULL OR e.resignDate > NOW())
                 ORDER BY fullName DESC
             ";

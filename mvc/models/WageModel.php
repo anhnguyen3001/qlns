@@ -17,11 +17,11 @@
                 WHERE validDate =
                 (
                     SELECT MAX(validDate) FROM wage t
-                    WHERE validDate <= 'time' AND t.employeeID = w.employeeID
+                    WHERE EXTRACT(YEAR_MONTH FROM validDate) <= EXTRACT(YEAR_MONTH FROM 'time') AND t.employeeID = w.employeeID
                 ) AND startDate = 
                 (
                     SELECT MAX(startDate) FROM jobhis t 
-                    WHERE t.employeeID = w.employeeID AND t.startDate <= 'time'
+                    WHERE t.employeeID = w.employeeID AND EXTRACT(YEAR_MONTH FROM t.startDate) <= EXTRACT(YEAR_MONTH FROM 'time')
                 )
             ";
 

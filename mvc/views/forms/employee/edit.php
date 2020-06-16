@@ -17,8 +17,6 @@
         
         $wage = $data['employee']['wage'];
         $currentDateWage = date('d-m-Y', strtotime($data['employee']['validDate']));
-
-        echo $edu;
     }
 ?>
 <div class="modal" tabindex='1' id='edit-modal'>
@@ -157,7 +155,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <input type="submit" name='edit-position' class='btn-primary submit-btn save-btn' value="Thêm">
+                        <input type="submit" name='add-position' class='btn-primary submit-btn save-btn' value="Thêm">
                     </div>
                 </form>
             </div>

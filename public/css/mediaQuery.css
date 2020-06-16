@@ -92,6 +92,11 @@
     .page-header .header{
         font-size: 170%;
     }
+
+    .add-btn{
+        font-size: 85% !important;
+    }
+
     .modal-body .nav{
         font-size: 92%;
     }
@@ -111,11 +116,19 @@
         padding-top: 15px;
     }
 
+    .result{
+        display: none;
+    }
+
     .container-fluid{
         padding: 20px 20px 0 20px;
     }
 
-    .col-5, .col-2, .col-3, .col-4{
+    .col-5{
+        flex: 0 0 48%;
+    }
+
+    .col-2, .col-3, .col-4, .pagination-container{
         flex: 0 0 100%;
     }
 
@@ -128,7 +141,12 @@
     }
 
     #typeAccount div{
-        margin: 8px 0;
+        margin-top: 8px;
+        text-align: left;
+    }
+
+    .subheader{
+        margin-bottom: 5px;
     }
 }
 

@@ -16,17 +16,13 @@ $(document).ready(function(){
         navItem.removeClass('active');
 
         var formID = $(navItem).attr('data-toggle'); 
-        $(formID).removeClass('show');
+        $('#' + formID).removeClass('show');
     }
 
     function activeNavItem(navItem){
         navItem.addClass('active');
 
         var formID = $(navItem).attr('data-toggle'); 
-        $(formID).addClass('show');
-    }
-
-    function formatMoney (num) {
-        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+        $('#' + formID).addClass('show');
     }
 });

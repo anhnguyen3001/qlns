@@ -80,8 +80,7 @@
                             $messageType = 'success';
                             $mess = "Cập nhật thành công";
                         }
-                    } 
-                } else if (isset($_POST['add-position'])){
+                    } else if (isset($_POST['add-position'])){
                         unset($_POST['add-position']);
                         $_POST = $this->validation->validate($_POST);
                         $posID = $_POST['positionID'];
@@ -120,25 +119,24 @@
 
                         // Current
                         $currentWage = $_POST['currentWage'];
-                        $previousDate = $_POST['currentDateWage'];
+                        $previousDate = date('Y-m-d',strtotime($_POST['currentDateWage']));
                         unset($_POST['currentWage']);
                         unset($_POST['currentDateWage']);
-                        unset($_POST['wage']);
-
+                        
                         if ($previousDate >= $date) 
                             $mess = 'Thời gian này đã tồn tại mức lương';
                         else if ($currentWage == $wage)
                             $mess = 'Mức lương đã tồn tại';
                         else if ($this->wageModel->insert($_POST)) {
                             $messageType = 'success';
-                            $mess = "Cập nhật thành công";
+                            $mess = "Thêm mới mức lương thành công";
                         }
                     } else if (isset($_POST['edit-position'])){
                         unset($_POST['edit-position']);
 
                         $_POST = $this->validation->validate($_POST);
                         $positionTitle = $this->positionModel->getPositionInfo(['positionID' =>$_POST['positionID']])['positionTitle'];
-
+              
                         if ($positionTitle != 'Trưởng phòng' || ($positionTitle =='Trưởng phòng' 
                         && $this->departmentModel->getDepartmentInfo($_POST['departmentID'])['employeeID'] == 'N/A')){
                             if ($this->jobhisModel->updateInfo($_POST)) {
@@ -147,12 +145,11 @@
                             }
                         }
                     }
-                
+                }
 
                 $_SESSION['messType'] = $messageType;
                 $_SESSION['mess'] = $mess;
                 
-
                 header('Location: ' .ROOT_LINK .'Employee');
                 exit;
             } else {
