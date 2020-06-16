@@ -74,9 +74,9 @@
                     if (isset($_POST['edit-info'])){
                         unset($_POST['edit-info']);
                         // $this->validation->validate($_POST);
-                        foreach($_POST as $key => $value){
-                            $_POST[$key] = $this->validation->formatData($key, $value);
-                        }
+                        // foreach($_POST as $key => $value){
+                            $_POST['gender'] = $this->validation->formatData('gender', $_POST['gender']);
+                        // }
 
                         // $_POST = $this->validation->validate($_POST);
                         print_r($_POST);
