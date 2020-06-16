@@ -43,7 +43,7 @@
             return $firstChr . mb_substr($string, 1, null, $encoding);
         }
 
-        function formatData($key, $value){
+        public function formatData($key, $value){
             $value = trim($value);
             $value = str_replace('/\s{2,}/', ' ', $value);
 
